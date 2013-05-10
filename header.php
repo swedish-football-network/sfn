@@ -57,13 +57,14 @@
 <body <?php body_class(); ?>>
 	<div class="modal login arrow-box" id="login-modal">
 		Logga in
+		<?php wp_login_form( $args ); ?>
 	</div>
 
 	<div class="header">
     <div id="header_shadow">
     </div>
     <div id="search_social">
-	    	<div class="login-button" id="login-button"># Logga in</div>
+	    	<div class="login-button" id="login-button"><img src="<?php echo get_template_directory_uri(); ?>/images/padlock.png" /> Logga in</div>
     <?php get_search_form(); ?>
         <div class="sociala_medier">
         	<a href="https://www.facebook.com/swedishfootballnetwork"><img src="<?php bloginfo('template_directory'); ?>/images/facebook-icon.png" /></a>
