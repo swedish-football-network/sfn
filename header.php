@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes('xhtml'); ?>><head profile="http://gmpg.org/xfn/11">
   <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-	
+
 	<meta property="og:image" content="http://www.swedishfootballnetwork.se/wp-content/themes/gray-white-black/images/sfn_logo2.png"/>
-	
+
     <title><?php
 	/*
 	 * Print the <title> tag based on what is being viewed.
@@ -28,7 +28,7 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
 	<?php wp_head(); ?>
-    <script type="text/javascript" src="wp-content/themes/gray-white-black/tablesorter/jquery.tablesorter.js"></script> 
+    <script type="text/javascript" src="wp-content/themes/gray-white-black/tablesorter/jquery.tablesorter.js"></script>
     <script type="text/javascript">
 		jQuery(document).ready(function($){
 			var head = $("#roster table tbody").find("tr:first-child").html();
@@ -36,7 +36,7 @@
 			$("#roster table tbody").find("tr:first-child").remove();
 			$("#roster table tbody").before(head);
 			$("#roster table thead td").each(function(index) {
-				var content = $(this).text();	
+				var content = $(this).text();
 			  	var thisTD = this;
 			  	var newElement = $("<th></th>");
 			  	$.each(this.attributes, function(index) {
@@ -48,19 +48,22 @@
 			$("#roster table").tablesorter();
 			$("#tabell_div table tbody tr td").each(function(){
 				if($("#hiddenteamforjscript").text() == $(this).text()){
-					$(this).parent().css("background","#94A8C5");	
-				}; 
+					$(this).parent().css("background","#94A8C5");
+				};
 			});
-		}); 
+		});
     </script>
 </head>
 <body <?php body_class(); ?>>
-
+	<div class="modal login">
+		Logga in
+	</div>
 
 	<div class="header">
     <div id="header_shadow">
     </div>
     <div id="search_social">
+	    	<div class="login-button"># Logga in</div>
     <?php get_search_form(); ?>
         <div class="sociala_medier">
         	<a href="https://www.facebook.com/swedishfootballnetwork"><img src="<?php bloginfo('template_directory'); ?>/images/facebook-icon.png" /></a>
@@ -110,11 +113,11 @@
 			$temp = get_field('bortalag');
 			$bortalag = $temp[0]->ID;
 			$bortalag = get_the_title($bortalag) ;
-			
+
 			$date = strtotime(get_field("datum"));
 			$game_week = date('W', $date);
-		
-			
+
+
 			if(get_field('serie') == "Superserien" and $game_week == $real_week){?>
                 <div class="game" onclick="javascript:location.href='<?php the_permalink() ?>';">
                     <div class="date">

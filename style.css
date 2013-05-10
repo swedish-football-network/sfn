@@ -83,6 +83,24 @@ p.form-submit, p.form-allowed-tags {margin-left: 260px;}
 body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-height: 1.5em;/* background: url(images/bg.png) top no-repeat;  background: url(images/bg_sfn2.jpg) top no-repeat*/; background-color:#000;}
 
 .header .widget {overflow:visible; height:40px}
+.login-button {
+	float: left;
+	margin-top: 22px;
+	background: blue;
+	background-image: -o-linear-gradient(-83deg, #024C8B 0%, #033B6C 100%);
+	background-image: -moz-linear-gradient(-83deg, #024C8B 0%, #033B6C 100%);
+	background-image: -webkit-linear-gradient(-83deg, #024C8B 0%, #033B6C 100%);
+	background-image: -ms-linear-gradient(-83deg, #024C8B 0%, #033B6C 100%);
+	background-image: linear-gradient(-173deg, #024C8B 0%, #033B6C 100%);background-image: -webkit-linear-gradient(-83deg, #024C8B 0%, #033B6C 100%);
+	border-radius: 4px;
+	line-height: 2.1;
+	padding: 3px 1em;
+	height: 30px;
+	font-size: 12px;
+	color: yellow;
+	cursor: pointer;
+	display: inline;
+}
 #upper-holder{width:100%; position:relative;height:260px;}
 .header {background: url(images/headerbg.jpg) top no-repeat; position: relative; z-index: 51; height: 350px;width: 962px; padding:0 20px 0; margin: 0 auto; overflow:visible}
 .header .logo-box {overflow: hidden; max-width: 600px; width: 220px; margin: 0 auto; text-align:center; position:relative; top:10px;}
@@ -465,34 +483,34 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 -moz-border-radius: 5px; margin-bottom:20px;
 border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible; box-shadow:5px 5px 5px #CCC;font-size:12px;}
 
-.lagruta_hdr { 
-	margin-bottom:5px; 
-	color: #333; 
-	font-size:18px; 
+.lagruta_hdr {
+	margin-bottom:5px;
+	color: #333;
+	font-size:18px;
 	width:100%;
-	
+
 	padding:3px 0 0 0;
-	font-family: "condensad", Arial, Helvetica, sans-serif ; 
+	font-family: "condensad", Arial, Helvetica, sans-serif ;
 }
 
-.roster_hdr {  
-	color: #333; 
-	font-size:18px; 
+.roster_hdr {
+	color: #333;
+	font-size:18px;
 	width:100%;
-	
+
 	padding:3px 0 0 0;
-	font-family: "condensad", Arial, Helvetica, sans-serif ; 
+	font-family: "condensad", Arial, Helvetica, sans-serif ;
 }
 
 .lagtabeller table {
 	font-size:12px;
 	width:100%;
-	
+
 }
 .lagtabeller td {
 	padding:2px;
-		
-	
+
+
 }
 
 .lagtabeller .header{
@@ -505,7 +523,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 
 .lagtabeller .headerSortDown, .lagtabeller .headerSortUp{
 	background:#CCC;
-} 
+}
 
 #match {
 	font-size:10px;
@@ -527,7 +545,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 	height:100%;
 	position:relative;
 	padding: 0;
-	font-family: "condensad", Arial, Helvetica, sans-serif ; 
+	font-family: "condensad", Arial, Helvetica, sans-serif ;
 	color:#222;
 }
 .hdr img {
