@@ -9,7 +9,6 @@
 			left: position.left,
 			top: position.top + $(this).height() + 25 //Buttons position + height + height of css arrow and its padding
 		};
-		console.log(props);
 		$('#login-modal').css(props).toggle();
 	});
 }) (jQuery);
