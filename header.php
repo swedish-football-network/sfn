@@ -55,7 +55,7 @@
     </script>
 </head>
 <body <?php body_class(); ?>>
-	<div class="modal login">
+	<div class="modal login arrow-box">
 		Logga in
 	</div>
 
