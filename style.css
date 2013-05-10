@@ -138,8 +138,8 @@ body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-hei
 .arrow-box:before {
 	border-color: rgba(7, 56, 112, 0);
 	border-bottom-color: #073870;
-	border-width: 21px;
-	left: 12px;
+	border-width: 19px;
+	left: 14px;
 }
 
 #upper-holder{width:100%; position:relative;height:260px;}
