@@ -133,6 +133,19 @@ body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-hei
 	background: #FFFFFF;
 	border: 3px solid #073870;
 }
+.modal.login h3 {
+	margin: 0;
+}
+.modal.login p {
+	margin: 0;
+}
+.no-account {
+	font-size: 0.8em;
+}
+
+.modal.login a {
+	text-decoration: underline;
+}
 .modal.login input[type=text], .modal.login input[type=password] {
 	width: 100%;
 	padding: 4px;
@@ -703,4 +716,3 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 	line-height:normal
 }
 .rubriken{font-family: "condensad", Arial, Helvetica, sans-serif; font-size:16px;}
-

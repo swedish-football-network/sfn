@@ -55,7 +55,8 @@
 </head>
 <body <?php body_class(); ?>>
 	<div class="modal login arrow-box" id="login-modal">
-		Logga in
+		<h3>Logga in</h3>
+		<p class="no-account">Har du inget konto? <a href="<?php echo bloginfo('url'); ?>/wp-login.php?action=register">Registrera dig här!</a></p>
 		<?php wp_login_form( $args ); ?>
 	</div>
 
