@@ -127,7 +127,6 @@ function sfn_load_scripts() {
 	wp_enqueue_script( 'sfn-script' );
 
 	if( $pagenow == 'single-games.php' || $pagenow == 'single-teams.php' ) {
-		var_dump($pagenow);
 		wp_register_script( 'tablesorter', get_template_directory_uri() . '/tablesorter/jquery.tablesorter.js', array(), false, true );
 		wp_enqueue_script( 'tablesorter' );
 	}
