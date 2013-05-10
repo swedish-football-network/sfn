@@ -1,0 +1,3 @@
+<?php get_header( 'splash' ); ?>
+	<img class="splash-logo" src="<?php echo get_template_directory_uri(); ?>/images/sfn_logo2.png" height="187" width="220" alt="">
+	<p>Ditt nya hem för allt som rör amerikansk fotboll i Sverige! Vi polerar just nu på de sista detaljerna på sidan och kommer att publicera inom kort. Har du frågor eller undringar så hör av dig till oss via <a href="mailto:info@swedishfootballnetwork.se">info@swedishfootballnetwork.se</a>.</p>

@@ -1,0 +1,29 @@
+.splash-page {
+	margin-top: 100px;
+	text-align: center;
+	color: white;
+}
+
+.splash-page h1 {
+	margin: 20px auto;
+	font-size: 3em;
+	color: white;
+	text-shadow: 0;
+}
+
+.splash-page p {
+	margin: 0 auto;
+	max-width: 600px;
+	text-align: justify;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+.splash-page a {
+	color: rgb(254,254, 84);
+	border-bottom: 1px dotted white;
+}
+
+.splash-logo {
+	margin: 0 auto;
+}
