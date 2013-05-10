@@ -55,7 +55,7 @@
     </script>
 </head>
 <body <?php body_class(); ?>>
-	<div class="modal login arrow-box">
+	<div class="modal login arrow-box" id="login-modal">
 		Logga in
 	</div>
 
@@ -63,7 +63,7 @@
     <div id="header_shadow">
     </div>
     <div id="search_social">
-	    	<div class="login-button"># Logga in</div>
+	    	<div class="login-button" id="login-button"># Logga in</div>
     <?php get_search_form(); ?>
         <div class="sociala_medier">
         	<a href="https://www.facebook.com/swedishfootballnetwork"><img src="<?php bloginfo('template_directory'); ?>/images/facebook-icon.png" /></a>

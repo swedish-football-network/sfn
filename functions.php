@@ -51,7 +51,7 @@ function new_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 function gray_white_black_setup() {
-	
+
 add_editor_style();
 add_theme_support('automatic-feed-links');
 add_theme_support('post-thumbnails');
@@ -61,7 +61,6 @@ set_post_thumbnail_size( 120, 120, true ); // Default size
 // Make theme available for translation
 // Translations can be filed in the /languages/ directory
 load_theme_textdomain('gray_white_black', get_template_directory() . '/languages');
-	
 
 register_nav_menus(
 	array(
@@ -121,4 +120,8 @@ function gray_white_black_page_menu_flat() {
 	echo '</ul>';
 }
 
-?>
+add_action( 'init', 'sfn_load_scripts' );
+function sfn_load_scripts() {
+	wp_register_script( 'sfn-script', get_template_directory_uri() . '/javascripts/script.js', array(), false, true );
+	wp_enqueue_script( 'sfn-script' );
+}

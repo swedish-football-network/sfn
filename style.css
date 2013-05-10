@@ -102,6 +102,7 @@ body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-hei
 	display: inline;
 }
 .modal {
+	display: none;
 	position: absolute;
 	z-index: 10000;
 	padding: 15px;
