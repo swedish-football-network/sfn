@@ -28,7 +28,6 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
 	<?php wp_head(); ?>
-    <script type="text/javascript" src="wp-content/themes/gray-white-black/tablesorter/jquery.tablesorter.js"></script>
     <script type="text/javascript">
 		jQuery(document).ready(function($){
 			var head = $("#roster table tbody").find("tr:first-child").html();
