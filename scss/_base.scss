@@ -1,0 +1,48 @@
+/*------------------------------------*\
+    _BASE.SCSS
+\*------------------------------------*/
+
+.grid {
+	padding: 0 $side-padding;
+	max-width: (2*$side-padding)+$grid-width;
+  letter-spacing: -0.31em; // Whitespace fix
+
+  &.l-full-width {
+		max-width: 100%;
+		padding: 0;
+
+		.grid__item:first-child {
+			padding-left: 0;
+		}
+	}
+
+	.grid__item, .fix-letters {
+		letter-spacing: normal;
+	}
+}
+
+/**
+ * IMPORTS
+ */
+
+/**
+ * BASE STYLES
+ */
+
+html {
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	position: relative;
+	color: #000;
+	background-color: $body-bg-color;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li { }
+
+.alignright { text-align: right; }
+.alignleft { text-align: left; }
+.aligncenter { text-align: center; margin: 0 auto; }
+.italic { font-style: italic; }
+.caps { text-transform: uppercase; }
