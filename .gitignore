@@ -3,6 +3,7 @@
 
 #CODEKIT IGNORES
 *codekit*
+/.sass-cache
 
 #WORDPRESS IGNORES
 .htaccess
