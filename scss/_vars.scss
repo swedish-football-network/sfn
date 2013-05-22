@@ -20,7 +20,7 @@
  * and introducing objects and abstractions is as simple as switching the
  * following variables to `true`.
  */
-$use-grids:         false;
+$use-grids:         true;
 $use-flexbox:       false;
 $use-columns:       false;
 $use-nav:           false;
@@ -88,8 +88,9 @@ $brand-round:        4px;
  * Place any of your own variables that sit on top of inuit.css here.
  */
 
-$grid-width: 1000px;
+$grid-width: 960px;
 $side-padding: 15px;
 
 /* COLORS */
 $body-bg-color: #fff;
+$text-color: #333;

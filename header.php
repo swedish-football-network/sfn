@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes('xhtml'); ?>><head profile="http://gmpg.org/xfn/11">
-  <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-
-	<meta property="og:image" content="http://www.swedishfootballnetwork.se/wp-content/themes/gray-white-black/images/sfn_logo2.png"/>
+<!DOCTYPE html>
+<html>
+    <head profile="http://gmpg.org/xfn/11">
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+	<meta property="og:image" content="<?php echo get_template_directory_uri();?>/images/sfn_logo2.png"/>
 
     <title><?php
 	/*
@@ -10,18 +11,17 @@
 	 */
 	global $page, $paged;
 
-
-
 	// Add the blog name.
 	bloginfo( 'name' );
 
 	// Add the blog description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
-		echo " | $site_description ";
+	echo " | " . $site_description;
 
 	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', 'gray_white_black'), max( $paged, $page ) );
+	if ( $paged >= 2 || $page >= 2 ) {
+		echo ' | ' . sprintf( __( 'Page %s', 'sfn'), max( $paged, $page ) );
+    }
 
 	?></title>
 
@@ -29,49 +29,62 @@
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> >
 	<div class="modal login arrow-box" id="login-modal">
 		<h3>Logga in</h3>
 		<p class="no-account">Har du inget konto? <a href="<?php echo bloginfo('url'); ?>/wp-login.php?action=register">Registrera dig här!</a></p>
 		<?php wp_login_form( $args ); ?>
 	</div>
-
-	<div class="header">
-    <div id="header_shadow">
-    </div>
-    <div id="search_social">
-	    	<div class="login-button" id="login-button"><img src="<?php echo get_template_directory_uri(); ?>/images/padlock.png" /> Logga in</div>
-    <?php get_search_form(); ?>
-        <div class="sociala_medier">
-        	<a href="https://www.facebook.com/swedishfootballnetwork"><img src="<?php bloginfo('template_directory'); ?>/images/facebook-icon.png" /></a>
-            <a href="https://twitter.com/swefootballnet"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" /></a>
-            <a href="https://itunes.apple.com/se/podcast/lirresblog.com/id589995382?l=en"><img src="<?php bloginfo('template_directory'); ?>/images/itunes_icon.png" /></a>
+    <header class="header">
+        <div class="grid">
+            <div class="grid__item one-half">
+                <div class="login-button" id="login-button">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/padlock.png" /> Logga in
+                </div>
+            </div>
+            <div class="grid__item one-half">
+                <div class="alignright">
+                	<a href="https://www.facebook.com/swedishfootballnetwork"><img src="<?php echo get_template_directory_uri(); ?>/images/facebook-icon.png" /></a>
+                    <a href="https://twitter.com/swefootballnet"><img src="<?php echo get_template_directory_uri(); ?>/images/twitter.png" /></a>
+                    <a href="https://itunes.apple.com/se/podcast/lirresblog.com/id589995382?l=en"><img src="<?php echo get_template_directory_uri(); ?>/images/itunes_icon.png" /></a>
+                    <!--<?php get_search_form(); ?>-->
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="upper-holder">
-		<div class="logo-box">
-		  <p class="logo"><a href="<?php echo home_url(); ?>" name="top"><img src="<?php bloginfo('template_directory'); ?>/images/sfn_logo2.png" /></a></p>
-		</div>
-		<div class="teams_box">
-        	<img src="<?php bloginfo('template_directory'); ?>/images/trclogo.png" />
-		  	<img src="<?php bloginfo('template_directory'); ?>/images/kplogo.png" />
-		  	<img src="<?php bloginfo('template_directory'); ?>/images/stulogo.png" />
-            <img src="<?php bloginfo('template_directory'); ?>/images/ajlogo.png" />
-            <a href="http://safelit.wordpress.com" target="_blank"><img style="margin:0 20px" src="<?php bloginfo('template_directory'); ?>/images/sslogo.png" /></a>
-            <img src="<?php bloginfo('template_directory'); ?>/images/obklogo.png" />
-           <img src="<?php bloginfo('template_directory'); ?>/images/smmlogo.png" />
-            <img src="<?php bloginfo('template_directory'); ?>/images/u86logo.png" />
-            <img src="<?php bloginfo('template_directory'); ?>/images/cclogo.png" />
-		</div>
-    </div>
-		<div class="menubox">
-			<div>
-				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("widgetized-page-top") ) : ?>
-				<?php endif; ?>
-				<div class="clear"></div>
-			</div>
-		</div>
+        <div class="grid">
+            <div class="grid__item one-whole">
+                <div class="logo-box">
+                    <!-- INSERT H1 TEXT REPLACEMENT HERE -->
+                    <a href="<?php echo home_url(); ?>" name="top"><img src="<?php echo get_template_directory_uri(); ?>/images/sfn_logo2.png" /></a>
+                </div>
+            </div>
         </div>
+        <div class="grid">
+            <div class="grid__item one-whole">
+                <div class="teams_box">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/trclogo.png" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/kplogo.png" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/stulogo.png" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/ajlogo.png" />
+                    <a href="http://safelit.wordpress.com" target="_blank"><img style="margin:0 20px" src="<?php echo get_template_directory_uri(); ?>/images/sslogo.png" /></a>
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/obklogo.png" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/smmlogo.png" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/u86logo.png" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/cclogo.png" />
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="grid__item one-whole">
+                <div class="menubox">
+                    <div>
+                        <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("widgetized-page-top") ) : ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 		<?php
 		//
         $start_week = 59;
@@ -119,7 +132,4 @@
             </div>
         </div>
         <?php }?>
-
-
-
 	<div class="content">

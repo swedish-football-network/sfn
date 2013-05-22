@@ -2,8 +2,10 @@
     _BASE.SCSS
 \*------------------------------------*/
 
+/* SET UP THE INUIT.CSS GRID */
 .grid {
 	padding: 0 $side-padding;
+	margin: 0 auto;
 	max-width: (2*$side-padding)+$grid-width;
   letter-spacing: -0.31em; // Whitespace fix
 
@@ -35,11 +37,88 @@ html {
 
 body {
 	position: relative;
-	color: #000;
+	color: $text-color;
 	background-color: $body-bg-color;
+	font: 0.875em/1.5em Tahoma, Geneva, sans-serif
 }
 
 h1, h2, h3, h4, h5, h6, p, a, li { }
+
+h1, h2, h3, h4 {
+	color: $text-color;
+	font-family: "condensad", Arial, Helvetica, sans-serif;
+	text-shadow: #dcdcdc 0 0 2px;
+}
+
+h1 {
+	margin-bottom: 1em;
+	font-size:2em;
+}
+
+h2, h3 {
+	margin: 1.5em 0;
+	font-size:1.5em;
+	text-transform: none;
+}
+
+h4 {
+	margin: 1em 0;
+	color: #666;
+	font-size: 1.167em;
+}
+
+a {
+	color: $text-color;
+	text-decoration: none;
+
+	&:hover {
+		color: $text-color;
+		text-decoration: underline;
+	}
+}
+
+textarea, input, select, option, optgroup, button {
+	font: 1em "Arial", "Helvetica", sans-serif;
+}
+
+input, select, textarea {
+	outline: none;
+}
+
+button, [type="radio"], [type="checkbox"], [type="submit"], [type="button"], [type="reset"], label[for], select {
+	cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"]>input[type="button"]::-moz-focus-inner {
+	padding: 0;
+	border: none
+}
+
+fieldset {
+	overflow: hidden;
+	border: none;
+}
+
+legend {
+	display: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+dt {
+	font-weight: 700;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
 
 .alignright { text-align: right; }
 .alignleft { text-align: left; }
@@ -48,50 +127,10 @@ h1, h2, h3, h4, h5, h6, p, a, li { }
 .caps { text-transform: uppercase; }
 
 /*========================= PILE 'EM UP! ===============================*/
-/* Reset browser styles
------------------------------------------- */
-@font-face {
-	font-family: 'Condensad';
-	src: url('kenyan_coffee_rg-webfont.eot');
-    src: url('kenyan_coffee_rg-webfont.eot?#iefix') format('embedded-opentype'),
-         url('kenyan_coffee_rg-webfont.woff') format('woff'),
-         url('kenyan_coffee_rg-webfont.ttf') format('truetype'),
-         url('kenyan_coffee_rg-webfont.svg#kenyan_coffee_rgregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 
-/* box-sizing: border-box sätter box-modellen så att width innefattar padding. Se mer på http://hmps.se/12vmGer [HP] */
-* {margin: 0; padding: 0; box-sizing: border-box;}
-html {min-height: 100%; padding-bottom: 1px; overflow: scroll;}
-body {background-color:#fff; color: #333; font: 0.875em/1.5em Tahoma, Geneva, sans-serif}
-[class] {list-style: none; padding: 0;}
-h1, h2, h3, h4, h5, h6 {font-size: 1em;}
-dt {font-weight: 700;}
-table {border-collapse: collapse;}
-img {border: none; vertical-align: middle;}
-a {color: #000; text-decoration: none;}
-a:hover {color: #000; text-decoration: underline;}
-textarea, input, select, option, optgroup, button {font: 1em "Arial", "Helvetica", sans-serif}
-button, [type="radio"], [type="checkbox"], [type="submit"], [type="button"], [type="reset"], label[for], select {cursor: pointer}
-input, select, textarea {outline: none}
-fieldset {overflow: hidden; border: none;}
-legend {display: none;}
 
-button::-moz-focus-inner,
-input[type="reset"]::-moz-focus-inner,
-input[type="button"]::-moz-focus-inner,
-input[type="submit"]::-moz-focus-inner,
-input[type="file"]>input[type="button"]::-moz-focus-inner {padding: 0; border: none}
 
-/* Global Styles
------------------------------------------- */
-
-h1 {margin-bottom: 1em; color: #333; font-size:2em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-shadow: #dcdcdc 0 0 2px;}
-h2 {margin: 1.5em 0; color: #333; font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: none;}
-h3 {margin: 1.5em 0; color: #333; font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: none;}
-h4 {margin: 1em 0; color: #666; font-size: 1.167em;}
-h1 a, h2 a {font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; letter-spacing: 0.5px; color:#333}
+h1 a, h2 a {font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; letter-spacing: 0.5px; color:$text-color}
 
 blockquote {margin: 1.5em 0; padding: 15px 29px; border: 1px solid #e5e5e5; background: #f8f8f8; font-style: italic;}
 sub, sup {line-height: 1em;}
@@ -112,7 +151,7 @@ input, textarea, select {float: left; clear: left; width: 300px; margin: 0 0 10p
 input:focus, textarea:focus, select:focus {border-color: #bdbdbd;}
 input[type="checkbox"], input[type="radio"] {width: auto; border: none;}
 textarea {width: 95%; min-width: 200px; height: 145px;}
-button, input[type="submit"] {width: 162px; height: 32px; border: none; background: url("images/button.png") 0 0 no-repeat; color: #222; font: normal 	0.857em/30px Arial, Helvetica, sans-serif; text-transform: uppercase; text-align: center; letter-spacing: 1px; cursor: pointer;}
+button, input[type="submit"] {width: 162px; height: 32px; border: none; background: url("../images/button.png") 0 0 no-repeat; color: #222; font: normal 	0.857em/30px Arial, Helvetica, sans-serif; text-transform: uppercase; text-align: center; letter-spacing: 1px; cursor: pointer;}
 button:hover {background-position: 0 -33px; color: #000;}
 p.form-submit, p.form-allowed-tags {margin-left: 260px;}
 
@@ -219,33 +258,6 @@ body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-hei
 	left: 14px;
 }
 
-#upper-holder{width:100%; position:relative;height:260px;}
-.header {background: url(images/headerbg.jpg) top no-repeat; position: relative; z-index: 51; height: 350px;width: 962px; padding:0 20px 0; margin: 0 auto; overflow:visible}
-.header .logo-box {overflow: hidden; max-width: 600px; width: 220px; margin: 0 auto; text-align:center; position:relative; top:10px;}
-.header .logo-box p {margin: 0;}
-.header .logo-box p.tagline {color: #000; font-style: italic;}
-.header .logo-box p.logo {font-size: 2.5em; line-height: 1em;}
-.header .logo-box p.logo a {color: #000; font-family: Arial, Helvetica, sans-serif; text-transform: uppercase;}
-.header .logo-box p.logo a:hover {color: #000; text-decoration: none;}
-.header form {float: right; width: 300px; padding: 0; margin: 25px 0 0;}
-.header form input {width: 238px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: #333; font-size: 0.857em; font-style: italic; vertical-align: middle;}
-.header form button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
-.header #search_social{width:100%; position:relative; height:60px}
-.menubox {width:1002px;position:relative; z-index:1000; overflow:visible; margin-left:0 -40px; margin-top: 20px; left:-40px; box-shadow:0 2px 5px #000}
-#header_shadow {width:100%; height:230px; position:absolute; box-shadow:0 10px 10px #000; left:0px; bottom:0;}
-/*.menubox>div {border: 1px solid #bdbdbd; background: url("images/mm.png"); }
-.header ul.menu {list-style: none; min-height: 38px; margin: 0; padding: 0; }
-.header ul.menu>li {float: left; position: relative; overflow: hidden; margin: 0; padding: 0; }
-.header ul.menu>li:hover {overflow: visible; z-index: 50;cursor:pointer}
-.header ul.menu>li>a {float: left; height: 38px; padding: 0 20px; border-right: 1px solid #bdbdbd; background: #fff url("images/mm.png") 0 0 repeat-x; color: #333; font: bold 0.857em/38px Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1px;}
-.header ul.menu>li>a:hover, .header ul.menu>li:hover>a, .header ul.menu>li.current-menu-item>a, .header ul.menu>li.current_page_item>a {background: #fff; color: #000; text-decoration: none;}
-.header ul.menu ul {position: absolute; left: -1px; top: 38px; list-style: none; width: 200px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-width: 0 1px; }
-.header ul.menu ul li {position: relative; overflow: hidden; margin: 0; padding: 0;}
-.header ul.menu ul li:hover {overflow: visible;cursor:pointer}
-.header ul.menu ul li a {display: block; padding: 7px 20px; border-bottom: 1px solid #bdbdbd; background: #fff; color: #444; font-size: 0.857em; font-family: Arial, Helvetica, sans-serif; text-transform: uppercase;}
-.header ul.menu ul li a:hover, .header ul.menu ul li:hover>a {background: #f5f5f5; color: #000; text-decoration: none;cursor:pointer}
-.header ul.menu ul ul {left: 200px; top: 0;}*/
-
 .content {overflow: hidden; width: 962px; margin: 20px auto 0; background:#fff;padding: 30px 20px; box-shadow: 0 0 20px #000;}
 
 .main {float: left; width: 630px;}
@@ -327,7 +339,7 @@ p.post-navigation a.newer {float: right;}
 .alignright {float: right; margin-left: 20px;}
 
 .main form.searchform {margin: 1.5em 0; padding: 15px 29px; border: 1px solid #e5e5e5; background: #f8f8f8;}
-.main .searchform input {width: 300px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: #333; font-size: 0.857em; font-style: italic; vertical-align: middle;}
+.main .searchform input {width: 300px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: $text-color; font-size: 0.857em; font-style: italic; vertical-align: middle;}
 .main .searchform button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
 
 
@@ -341,10 +353,10 @@ box-shadow:5px 5px 5px #CCC;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;}
-.widget h3 {margin: 0 0 15px; color: #333; font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: uppercase;}
+.widget h3 {margin: 0 0 15px; color: $text-color; font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: uppercase;}
 .widget select {width: 240px; margin: 15px 0;}
 .widget ul {margin: 0; padding: 0; list-style: none; font-size: 0.929em;}
-.widget ul li {margin: 0; padding: 10px 0; border-top: 1px solid #cdcdcd; color: #333; font: normal 12px Arial,sans-serif;}
+.widget ul li {margin: 0; padding: 10px 0; border-top: 1px solid #cdcdcd; color: $text-color; font: normal 12px Arial,sans-serif;}
 .widget>ul>li:first-child {border-top: none;}
 .widget ul li a {padding-left: 20px; background: url("images/arrow.gif") 0 center no-repeat; color: #000; font-family: Arial,sans-serif;}
 .widget a, .widget .tagcloud a {color: #000;}
@@ -354,13 +366,13 @@ border-radius: 5px;}
 .widget .tagcloud a:visited {color: #000 !important;}
 
 .sidebar form {margin: 15px 0 0; padding: 0; border: none; background: none;}
-.sidebar form input {width: 175px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: #333; font-size: 0.857em; font-style: normal; vertical-align: middle;}
+.sidebar form input {width: 175px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: $text-color; font-size: 0.857em; font-style: normal; vertical-align: middle;}
 .sidebar form button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
 
 /* post styles
 ------------------------------------------ */
 #categories-single{color:#999; font-size: 14px; }
-#headline-single{width:100%; line-height:46px; margin:10px 0 -20px; color: #333; font-size:40px; font-family:"Condensad", Arial, Helvetica, sans-serif ; text-shadow: none;}
+#headline-single{width:100%; line-height:46px; margin:10px 0 -20px; color: $text-color; font-size:40px; font-family:"Condensad", Arial, Helvetica, sans-serif ; text-shadow: none;}
 #post-bild{width:130px; position:relative; float:left; overflow:hidden}
 #post-text{width:475px; position:relative; float:right;}
 #post-text-wo-img{width:605px; position:relative;}
@@ -369,7 +381,7 @@ border-radius: 5px;}
 .post-list li.post.sticky, .post-list li.page.sticky {border-color: #666}
 .post-list li.first-in-row {clear: left;}
 .post-list h2 {margin: 0.3em 0; font-size: 1.3em; font-weight: normal; line-height: 1.3em;}
-.post-list h2 a {color: #333; padding-top:10px}
+.post-list h2 a {color: $text-color; padding-top:10px}
 .post-list h2 a:hover {color: #000; text-decoration: none;}
 .post-list p {margin: 0.75em 0; font-size: 	0.929em; line-height: 1.4em;}
 .post-list p.categories {clear: left; margin: 0; font: normal 0.5em Arial, Helvetica, sans-serif; text-transform: uppercase;}
@@ -379,7 +391,7 @@ border-radius: 5px;}
 .post-list p.post-meta * {font-family: Arial, Helvetica, sans-serif;}
 .post-list p.post-meta .date {text-transform: uppercase;}
 .post-list p.post-meta .author {font-style: italic;}
-.post-list p.post-meta .comments a {padding: 2px 10px 8px; border: none; color: #333; top: no-repeat; }
+.post-list p.post-meta .comments a {padding: 2px 10px 8px; border: none; color: $text-color; top: no-repeat; }
 .post-list p.post-meta .comments a:hover {color: #444;}
 .post-list p.tags {font: normal 0.846em/1.75em Arial, Helvetica, sans-serif;}
 p.tags a {font-family: Arial, Helvetica, sans-serif;}
@@ -403,7 +415,7 @@ p.post-navigation a.newer {float: right;}
 
 .box.full-post {padding: 10px;background: #fff; left:50px; }
 .full-post h1 {margin-bottom: 0.5em;}
-.box.full-post h2 {margin: 1.5em 0; color: #333; font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: none; }
+.box.full-post h2 {margin: 1.5em 0; color: $text-color; font-size:1.5em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: none; }
 .full-post img {margin:0 auto; padding: 3px; border: 1px solid #e5e5e5;}
 .full-post p.categories {margin: 0 0 1em; font: normal 0.6em Arial, Helvetica, sans-serif; text-transform: uppercase;}
 .full-post p.categories a {font-family: Arial, Helvetica, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
@@ -412,7 +424,7 @@ p.post-navigation a.newer {float: right;}
 .full-post p.post-meta * {font-family: Arial, Helvetica, sans-serif;}
 .full-post p.post-meta .date {text-transform: uppercase;}
 .full-post p.post-meta .author {font-style: italic;}
-.full-post p.post-meta .comments a {padding: 2px 10px 8px; border: none; color: #333;}
+.full-post p.post-meta .comments a {padding: 2px 10px 8px; border: none; color: $text-color;}
 .full-post p.post-meta .comments a:hover {color: #444;}
 
 .box.tags {margin-top: -30px; padding: 30px; border-top: none;}
@@ -424,7 +436,7 @@ p.post-navigation a.newer {float: right;}
 
 .comments {padding: 0; background: rgba(255,255,255,0.6)}
 .comments .respond {padding: 30px;}
-.comments h3 {margin: 30px 30px 15px; color: #333; font-size:1em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: uppercase;}
+.comments h3 {margin: 30px 30px 15px; color: $text-color; font-size:1em; font-family: "condensad", Arial, Helvetica, sans-serif ; text-transform: uppercase;}
 .comments form#commentform {overflow: hidden; padding: 0 30px 30px;}
 .comments form#commentform p {clear: left; margin-left: 0; }
 .comments form#commentform .required {float: left; margin-left: -270px; color: #000;}
@@ -493,11 +505,11 @@ p label {display: inline; margin-bottom: 0;}
 /* Games/Tabell styles
 ------------------------------------------ */
 
-#games{width:962px; height:100px; margin:10px auto -30px auto; font-family: Arial, Helvetica, sans-serif; font-size:10px; color:#333;background:#fff; position:relative; z-index:50; overflow:hidden; padding: 20px 0 0 0 }
+#games{width:962px; height:100px; margin:10px auto -30px auto; font-family: Arial, Helvetica, sans-serif; font-size:10px; color:$text-color;background:#fff; position:relative; z-index:50; overflow:hidden; padding: 20px 0 0 0 }
 .game{position:relative; width:210px; padding:10px 0px 0; height: 75px;float:left; background: url(images/gamesbg.png) bottom no-repeat}
 .game:hover{cursor:pointer; height:77px}
 .game .date {bottom:53px; position:absolute; left:13px; font-weight:bold; color:#666}
-.sched {position:relative; padding:15px 5px 0; height: 68px;float:left; width:120px; background:url(images/sched_btn_bg.png) bottom no-repeat; text-align:center; font-family:"condensad", Arial, Helvetica, sans-serif ; font-size:25px; color:#333; text-shadow:1px 1px 1px #FFF; left:8px}
+.sched {position:relative; padding:15px 5px 0; height: 68px;float:left; width:120px; background:url(images/sched_btn_bg.png) bottom no-repeat; text-align:center; font-family:"condensad", Arial, Helvetica, sans-serif ; font-size:25px; color:$text-color; text-shadow:1px 1px 1px #FFF; left:8px}
 .sched:hover {height:70px; cursor:pointer; padding:17px 5px 0}
 .weekchanger {height:20px;padding: 15px 5px; font-size:24px; font-weight:bold; width:130px;}
 .teams_box{width:100%; margin:20px auto 0; position:relative; top:-20px; text-align: center;}
@@ -603,7 +615,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 
 .lagruta_hdr {
 	margin-bottom:5px;
-	color: #333;
+	color: $text-color;
 	font-size:18px;
 	width:100%;
 
@@ -612,7 +624,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 }
 
 .roster_hdr {
-	color: #333;
+	color: $text-color;
 	font-size:18px;
 	width:100%;
 

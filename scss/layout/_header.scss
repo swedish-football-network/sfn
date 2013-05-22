@@ -1,0 +1,84 @@
+/*------------------------------------*\
+    _HEADER.SCSS
+\*------------------------------------*/
+
+#upper-holder {
+    width: 100%;
+    position: relative;
+    height: 260px;
+}
+
+.header {
+    background: url(../images/headerbg.jpg) top no-repeat;
+    position: relative;
+    z-index: 51;
+    height: 350px;
+    padding: 0 20px 0;
+    margin: 0 auto;
+    overflow: visible;
+
+    .logo-box {
+        overflow: hidden;
+        margin: 10px auto 0;
+        text-align: center;
+        position: relative;
+    }
+
+    form {
+        float: right;
+        width: 300px;
+        padding: 0;
+        margin: 25px 0 0;
+
+        input {
+            width: 238px;
+            margin: 0;
+            padding: 5px 10px;
+            border: 1px solid #bdbdbd;
+            background: #f7f7f5;
+            color: $text-color;
+            font-size: 0.857em;
+            font-style: italic;
+            vertical-align: middle;
+        }
+
+        button {
+            overflow: hidden;
+            width: 39px;
+            height: 26px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #bdbdbd;
+            border-left: none;
+            background: url("../images/search.png") no-repeat;
+            text-indent: -500px;
+            vertical-align: middle;
+        }
+    }
+
+    #search_social {
+        width: 100%;
+        position: relative;
+        height: 60px;
+    }
+
+    .menubox {
+        width: 1002px;
+        position: relative;
+        z-index: 1000;
+        overflow: visible;
+        margin-left: 0 -40px;
+        margin-top: 20px;
+        left: -40px;
+        box-shadow: 0 2px 5px #000;
+    }
+}
+
+.header_shadow {
+    width: 100%;
+    height: 230px;
+    position: absolute;
+    box-shadow: 0 10px 10px #000;
+    left: 0px;
+    bottom: 0;
+}
