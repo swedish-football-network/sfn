@@ -1,3 +1,10 @@
+#SUBLIME IGNORE
+*sublime*
+
+#CODEKIT IGNORES
+*codekit*
+
+#WORDPRESS IGNORES
 .htaccess
 wp-config.php
 wp-content/uploads/
