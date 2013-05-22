@@ -1,13 +1,24 @@
 <?php
 
-register_sidebar(array('name'=> 'Sidebar',
-	'id' => 'sidebar',
-	'description' => 'Sidebar',
-	'class' => '',
-	'before_widget' => '<article id="%1$s" class="widget %2$s">',
-	'after_widget' => '</article>',
-	'before_title' => '<h4>',
-	'after_title' => '</h4>'
-));
+add_action ( 'widgets_init', 'sfn_widgets' );
+function sfn_widgets() {
+	register_sidebar(array(
+		'name' => __( 'Sidebar Widget Area', 'sfn'),
+		'id' => 'sidebar-widget-area',
+		'description' => __( 'The sidebar widget area', 'sfn'),
+		'before_widget' => '<div class="widget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3>',
+		'after_title' => '</h3>',
+	));
+
+	register_sidebars(array(
+		'name' => 'widgetized-page-top',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widgettitle">',
+		'after_title' => '</h2>'
+	));
+}
 
 /* End of sidebars.php */

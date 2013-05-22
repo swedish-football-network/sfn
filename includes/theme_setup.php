@@ -1,45 +1,47 @@
 <?php
-function malmoe_setup() {
-	// Add language supports. Please note that Reverie Framework does not include language files.
-	load_theme_textdomain('malmoe', get_template_directory() . '/lang');
 
-	// Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
-	// add_theme_support('post-thumbnails');
-	// set_post_thumbnail_size(150, 150, false);
+add_action('after_setup_theme', 'sfn_setup');
+function sfn_setup() {
+	// Add language supports.
+	load_theme_textdomain('sfn', get_template_directory() . '/languages');
 
-	// Add post formarts supports. http://codex.wordpress.org/Post_Formats
-	add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
-	add_theme_support( 'post-thumbnails' );
 
-	// Add menu supports. http://codex.wordpress.org/Function_Reference/register_nav_menus
-	add_theme_support('menus');
+	add_editor_style();
+	add_theme_support('automatic-feed-links');
+	add_theme_support('post-thumbnails');
 
-	add_theme_support( 'infinite-scroll', array(
-    'container'  => 'blog-list',
-    'render'		 => 'infinite_scroll_render',
-    'wrapper'		 => false,
-    'footer'     => false
-	) );
+	set_post_thumbnail_size( 120, 120, true ); // Default size
 
-	register_nav_menus(array(
-		'primary_navigation' => __('Primary Navigation', 'malmoe'),
-		'blog_navigation' => __('Blog Navigation', 'malmoe')
-	));
+	// Make theme available for translation
+	// Translations can be filed in the /languages/ directory
+	load_theme_textdomain('gray_white_black', get_template_directory() . '/languages');
 
-	if (class_exists( 'Dashboard_Widget_Template' ) ) {
-		$add_widget = new Dashboard_Widget_Template;
-		$add_widget -> setup_widget( 'Support-widget', 'Utveckling & Support', 'malmoe_support_widget' );
-	}
+	register_nav_menus(
+		array(
+		  'primary' => __('Header Menu', 'sfn'),
+		  'secondary' => __('Footer Menu', 'sfn')
+		)
+	);
+
 }
 
-add_action('after_setup_theme', 'malmoe_setup');
-
-/*function infinite_scroll_render() {
-	get_template_part( 'content' );
-}*/
+/**
+ * Setup custom excerpt length
+ */
 
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 function custom_excerpt_length( $length ) {
 	return 100;
 }
+
+/**
+ * Setup custom 'READ MORE' output
+ */
+
+add_filter('excerpt_more', 'new_excerpt_more');
+function new_excerpt_more($more) {
+       global $post;
+	return ' <a href="'. get_permalink($post->ID) . '"><strong>   Läs</strong></a>';
+}
+
 /* End of theme_setup.php */

@@ -24,20 +24,12 @@ function cleaner_caption( $output, $attr, $content ) {
 	if ( 1 > $attr['width'] || empty( $attr['caption'] ) )
 		return $content;
 
-	/* Set up the attributes for the caption <div>. */
-	$attributes = ' class="figure ' . esc_attr( $attr['align'] ) . '"';
+	$attributes = ' class="figure ' . esc_attr( $attr['align'] ) . '"'; /* Set up the attributes for the caption <div>. */
 
-	/* Open the caption <div>. */
-	$output = '<figure' . $attributes .'>';
-
-	/* Allow shortcodes for the content the caption was created for. */
-	$output .= do_shortcode( $content );
-
-	/* Append the caption text. */
-	$output .= '<figcaption>' . $attr['caption'] . '</figcaption>';
-
-	/* Close the caption </div>. */
-	$output .= '</figure>';
+	$output = '<figure' . $attributes .'>'; /* Open the caption <div>. */
+	$output .= do_shortcode( $content ); /* Allow shortcodes for the content the caption was created for. */
+	$output .= '<figcaption>' . $attr['caption'] . '</figcaption>'; /* Append the caption text. */
+	$output .= '</figure>'; /* Close the caption </div>. */
 
 	/* Return the formatted, clean caption. */
 	return $output;
