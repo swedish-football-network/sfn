@@ -1,12 +1,12 @@
-<div class="sidebar">
-<?php 
+<div class="grid__item one-third">
+<?php
 $tblActive = false;
 $rsltActive = false;
 if ($tblActive == true){ /* Start Tabell-if */
 ?>
-<div id="tabell_div_logo"><img src="<?php bloginfo('template_directory'); ?>/images/tbl_ss_logo.png" /></div>	
+<div id="tabell_div_logo"><img src="<?php bloginfo('template_directory'); ?>/images/tbl_ss_logo.png" /></div>
 	<div id="tabell_div">
-    
+
 		<?php
 		$lag = array();
 		$links = array();
@@ -19,7 +19,7 @@ if ($tblActive == true){ /* Start Tabell-if */
 					$permalink = get_permalink();
 					$links[$lagnamn] = $permalink;
 				}else{
-					$links[$lagnamn] = "nope";	
+					$links[$lagnamn] = "nope";
 				}
 			}
 		endwhile;
@@ -31,18 +31,18 @@ if ($tblActive == true){ /* Start Tabell-if */
 			$pfor = 0;
 			$paga = 0;
 			$games = array();
-	  		
+
 			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 100 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				if(get_field("hemmares") != ""){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
 					$hemmalag = get_the_title($hemmalag) ;
-					
+
 					$temp = get_field('bortalag');
 					$bortalag = $temp[0]->ID;
 					$bortalag = get_the_title($bortalag) ;
-					
+
 					if($hemmalag == $laget){
                         if(get_field('hemmares') < get_field('bortares')) {
                                 $loss++;
@@ -58,7 +58,7 @@ if ($tblActive == true){ /* Start Tabell-if */
                         $games[$bortalag]['s'][] = get_field('hemmares') . "-" . get_field('bortares'); // score, för spårbarhet
                         $games[$bortalag]['diff'] += get_field('hemmares')-get_field('bortares'); // målskillnad i inbördes möten
                 	};
- 
+
                 	if($bortalag == $laget){
                         if(get_field('bortares') < get_field('hemmares')) {
                                 $loss++;
@@ -76,7 +76,7 @@ if ($tblActive == true){ /* Start Tabell-if */
               		};
 				}
 			endwhile;
-		
+
 		$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));
         $tabell[] = array(
                 "lag" => $laget,
@@ -91,8 +91,8 @@ if ($tblActive == true){ /* Start Tabell-if */
                 "per" => $percent
         );
 };
- 
- 
+
+
 /**
  * Lika antal matcher
  *  - poäng
@@ -120,7 +120,7 @@ function sort_array($a, $b){
                                 }
                         }
                 }
- 
+
         } else { /* Om lagen inte spelat lika många matcher, whole new ball game */
                 if( $a['per'] != $b['per'] ) { /* vinstprocent */
                         return ($a['per'] < $b['per']) ? 1 : -1;
@@ -135,7 +135,7 @@ function sort_array($a, $b){
                 }
         }
 }
- 
+
 
 function print_table( $tabell , $ar) {
         echo "<table id='tabell' border=0 cellpadding=3>";
@@ -169,9 +169,9 @@ function print_table( $tabell , $ar) {
                 echo "</tr>";
         }
         echo "</table></div>";
-		 
+
 	}
-	
+
 	usort($tabell, 'sort_array');
 	print_table( $tabell, $links);
 
@@ -194,7 +194,7 @@ $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 300 ) )
 					}else{
 						$hemmalink = "nope";
 					}
-					
+
 					$temp = get_field('bortalag');
 					$id = $temp[0]->ID;
 					$bortalag = get_the_title($id);
@@ -203,7 +203,7 @@ $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 300 ) )
 					}else{
 						$bortalink = "nope";
 					}
-					
+
 					$temp = array(
 						"hemmalink" => $hemmalink,
 						"bortalink" => $bortalink,
@@ -217,21 +217,21 @@ $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 300 ) )
 						"tid" => get_field("tid")
 					);
 					array_push($resultat, $temp);
-				} 
-		endwhile; 
+				}
+		endwhile;
 function cmp($a, $b)
 {
     return strcmp($a["serie"], $b["serie"]);
 }
 
 usort($resultat, "cmp");
-  ?>      
-	
+  ?>
+
 <div id="resultat_div">
 	<table id="resultat">
-    		<?php 
+    		<?php
 			$serie;
-			foreach($resultat as $match){ 
+			foreach($resultat as $match){
 				if($match["serie"] != $serie){
 					?>
 				<tr><td><?php echo $match["serie"] ?></td><td></td></tr>
@@ -241,12 +241,12 @@ usort($resultat, "cmp");
 				?>
 			 	<tr>
                     <td>
-						<?php if($match["hemmalink"] != "nope"){echo "<a href='" . $match["hemmalink"] . "'>" . $match["hemmalag"] . "</a>"; }else{ echo $match["hemmalag"]; } ?> 
-                        - 
-                        <?php if($match["bortalink"] != "nope"){echo "<a href='" . $match["bortalink"] . "'>" . $match["bortalag"] . "</a>"; }else{ echo $match["bortalag"]; } ?> 
+						<?php if($match["hemmalink"] != "nope"){echo "<a href='" . $match["hemmalink"] . "'>" . $match["hemmalag"] . "</a>"; }else{ echo $match["hemmalag"]; } ?>
+                        -
+                        <?php if($match["bortalink"] != "nope"){echo "<a href='" . $match["bortalink"] . "'>" . $match["bortalag"] . "</a>"; }else{ echo $match["bortalag"]; } ?>
                     </td>
                     <td>
-              		<?php 
+              		<?php
 					if($match["hemmares"] != ""){
 						echo "<a href='" . $match["matchlink"] . "'>" . $match["hemmares"] . " - " . $match["bortares"] . "</a>";
 					}else{
@@ -255,11 +255,11 @@ usort($resultat, "cmp");
 					?>
                     </td>
                </tr>
-            	<?php 		
+            	<?php
 			}
-			?> 
+			?>
     </table>
-    
+
 
 </div>
 

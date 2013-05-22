@@ -1,12 +1,12 @@
 <?php get_header(); ?>
 
-<div class="main">
+<div class="grid__item two-thirds">
 
 
 
 	<?php if (have_posts()) :  $first = true; ?>
 		<ul class="post-list">
-       
+
 		<?php while (have_posts()) : the_post();
 		if($first) $class = "first-in-row";
 		else $class="";
@@ -14,7 +14,7 @@
 		?>
 			<!-- Start: Post -->
             <?php if (has_post_thumbnail()){ ?>
-           
+
 			<li <?php post_class($class); ?>>
 				<div id="post-bild"><?php the_post_thumbnail(); ?></div>
 				<div id="post-text"><p class="categories"><?php the_category(", "); ?></p>

@@ -35,7 +35,8 @@
 		<p class="no-account">Har du inget konto? <a href="<?php echo bloginfo('url'); ?>/wp-login.php?action=register">Registrera dig här!</a></p>
 		<?php wp_login_form( $args ); ?>
 	</div>
-    <header class="header">
+    <header class="grid site-header">
+    <div class="grid__item one-whole">
         <div class="grid">
             <div class="grid__item one-half">
                 <div class="login-button" id="login-button">
@@ -61,7 +62,7 @@
         </div>
         <div class="grid">
             <div class="grid__item one-whole">
-                <div class="teams_box">
+                <div class="teams-box">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/trclogo.png" />
                     <img src="<?php echo get_template_directory_uri(); ?>/images/kplogo.png" />
                     <img src="<?php echo get_template_directory_uri(); ?>/images/stulogo.png" />
@@ -74,17 +75,18 @@
                 </div>
             </div>
         </div>
-        <div class="grid">
-            <div class="grid__item one-whole">
-                <div class="menubox">
-                    <div>
-                        <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("widgetized-page-top") ) : ?>
-                        <?php endif; ?>
-                    </div>
+    </div>
+    </header>
+    <div class="grid white-bg no-padding">
+        <div class="grid__item one-whole">
+            <div class="menu-box">
+                <div>
+                    <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("widgetized-page-top") ) : ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 		<?php
 		//
         $start_week = 59;
@@ -132,4 +134,4 @@
             </div>
         </div>
         <?php }?>
-	<div class="content">
+	<section class="grid white-bg">

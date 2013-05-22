@@ -1,4 +1,4 @@
-	</div>
+	</section>
 	<div class="site-footer">
 		<div class="links-wrapper">
 			<ul class="footer-links float-left">

@@ -2,6 +2,7 @@
 
 add_action ( 'widgets_init', 'sfn_widgets' );
 function sfn_widgets() {
+
 	register_sidebar(array(
 		'name' => __( 'Sidebar Widget Area', 'sfn'),
 		'id' => 'sidebar-widget-area',
@@ -12,8 +13,10 @@ function sfn_widgets() {
 		'after_title' => '</h3>',
 	));
 
-	register_sidebars(array(
-		'name' => 'widgetized-page-top',
+	register_sidebar(array(
+		'name' => __( 'Page top Widgets', 'sfn'),
+		'id' => 'widgetized-page-top',
+		'description' => __( 'The top widget area', 'sfn'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2 class="widgettitle">',

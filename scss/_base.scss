@@ -13,14 +13,24 @@
 		max-width: 100%;
 		padding: 0;
 
-		.grid__item:first-child {
+		/* .grid__item:first-child {
+			padding-left: 0;
+		} */
+	}
+
+	.grid__item:first-child {
 			padding-left: 0;
 		}
-	}
 
 	.grid__item, .fix-letters {
 		letter-spacing: normal;
 	}
+}
+
+.grid__item {
+	> .grid {
+  	padding: 0;
+  }
 }
 
 /**
@@ -126,6 +136,14 @@ img {
 .italic { font-style: italic; }
 .caps { text-transform: uppercase; }
 
+.white-bg {
+	background-color: #fff;
+}
+
+.no-padding {
+	padding: 0;
+}
+
 /*========================= PILE 'EM UP! ===============================*/
 
 
@@ -151,13 +169,13 @@ input, textarea, select {float: left; clear: left; width: 300px; margin: 0 0 10p
 input:focus, textarea:focus, select:focus {border-color: #bdbdbd;}
 input[type="checkbox"], input[type="radio"] {width: auto; border: none;}
 textarea {width: 95%; min-width: 200px; height: 145px;}
-button, input[type="submit"] {width: 162px; height: 32px; border: none; background: url("../images/button.png") 0 0 no-repeat; color: #222; font: normal 	0.857em/30px Arial, Helvetica, sans-serif; text-transform: uppercase; text-align: center; letter-spacing: 1px; cursor: pointer;}
+button, input[type="submit"] {width: 162px; height: 32px; border: none; background: url("../../images/button.png") 0 0 no-repeat; color: #222; font: normal 	0.857em/30px Arial, Helvetica, sans-serif; text-transform: uppercase; text-align: center; letter-spacing: 1px; cursor: pointer;}
 button:hover {background-position: 0 -33px; color: #000;}
 p.form-submit, p.form-allowed-tags {margin-left: 260px;}
 
 /* Main Layoutasdasdasdadas
 ------------------------------------------ */
-body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-height: 1.5em;/* background: url(images/bg.png) top no-repeat;  background: url(images/bg_sfn2.jpg) top no-repeat*/; background-color:#000;}
+body {border-top: 2px solid #000; background: #000; font-size: 0.875em; line-height: 1.5em;/* background: url(../images/bg.png) top no-repeat;  background: url(../images/bg_sfn2.jpg) top no-repeat*/; background-color:#000;}
 
 .header .widget {overflow:visible; height:40px}
 .login-button {
@@ -340,13 +358,13 @@ p.post-navigation a.newer {float: right;}
 
 .main form.searchform {margin: 1.5em 0; padding: 15px 29px; border: 1px solid #e5e5e5; background: #f8f8f8;}
 .main .searchform input {width: 300px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: $text-color; font-size: 0.857em; font-style: italic; vertical-align: middle;}
-.main .searchform button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
+.main .searchform button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("../images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
 
 
 /* sidebar
 ------------------------------------------ */
 .header .widget {padding: 0; border:none; box-shadow:none; margin:0}
-.widget {overflow: hidden; margin: 0 0 30px 0; padding: 10px; border: 1px solid #CCC;
+.widgets {overflow: hidden; margin: 0 0 30px 0; padding: 10px; border: 1px solid #CCC;
 -moz-box-shadow:5px 5px 5px #CCC;
 -webkit-box-shadow:5px 5px 5px #CCC;
 box-shadow:5px 5px 5px #CCC;
@@ -358,7 +376,7 @@ border-radius: 5px;}
 .widget ul {margin: 0; padding: 0; list-style: none; font-size: 0.929em;}
 .widget ul li {margin: 0; padding: 10px 0; border-top: 1px solid #cdcdcd; color: $text-color; font: normal 12px Arial,sans-serif;}
 .widget>ul>li:first-child {border-top: none;}
-.widget ul li a {padding-left: 20px; background: url("images/arrow.gif") 0 center no-repeat; color: #000; font-family: Arial,sans-serif;}
+.widget ul li a {padding-left: 20px; background: url("../images/arrow.gif") 0 center no-repeat; color: #000; font-family: Arial,sans-serif;}
 .widget a, .widget .tagcloud a {color: #000;}
 .widget ul li a:visited, .widget .tagcloud a:visited {color: #000;}
 .widget a:hover, .widget ul li.current_page_item>a, .widget ul li.current-menu-item>a, .widget ul li.current-cat>a{color: #000; text-decoration: none;}
@@ -367,7 +385,7 @@ border-radius: 5px;}
 
 .sidebar form {margin: 15px 0 0; padding: 0; border: none; background: none;}
 .sidebar form input {width: 175px; margin: 0; padding: 5px 10px; border: 1px solid #bdbdbd; background: #f7f7f5; color: $text-color; font-size: 0.857em; font-style: normal; vertical-align: middle;}
-.sidebar form button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
+.sidebar form button {overflow: hidden; width: 39px; height: 26px; margin: 0; padding: 0; border: 1px solid #bdbdbd; border-left: none; background: url("../images/search.png") no-repeat; text-indent: -500px; vertical-align: middle;}
 
 /* post styles
 ------------------------------------------ */
@@ -428,7 +446,7 @@ p.post-navigation a.newer {float: right;}
 .full-post p.post-meta .comments a:hover {color: #444;}
 
 .box.tags {margin-top: -30px; padding: 30px; border-top: none;}
-.box.tags p {margin: 0; padding: 5px 0 5px 30px; background: url("images/tags.gif") 0 0 no-repeat; color: #787878; font: normal 0.714em Arial, Helvetica, sans-serif; text-transform: uppercase;}
+.box.tags p {margin: 0; padding: 5px 0 5px 30px; background: url("../images/tags.gif") 0 0 no-repeat; color: #787878; font: normal 0.714em Arial, Helvetica, sans-serif; text-transform: uppercase;}
 .box.tags p a {font-style: italic; font-size: 1.1em; text-transform: none;}
 
 /* comments
@@ -506,10 +524,10 @@ p label {display: inline; margin-bottom: 0;}
 ------------------------------------------ */
 
 #games{width:962px; height:100px; margin:10px auto -30px auto; font-family: Arial, Helvetica, sans-serif; font-size:10px; color:$text-color;background:#fff; position:relative; z-index:50; overflow:hidden; padding: 20px 0 0 0 }
-.game{position:relative; width:210px; padding:10px 0px 0; height: 75px;float:left; background: url(images/gamesbg.png) bottom no-repeat}
+.game{position:relative; width:210px; padding:10px 0px 0; height: 75px;float:left; background: url(../images/gamesbg.png) bottom no-repeat}
 .game:hover{cursor:pointer; height:77px}
 .game .date {bottom:53px; position:absolute; left:13px; font-weight:bold; color:#666}
-.sched {position:relative; padding:15px 5px 0; height: 68px;float:left; width:120px; background:url(images/sched_btn_bg.png) bottom no-repeat; text-align:center; font-family:"condensad", Arial, Helvetica, sans-serif ; font-size:25px; color:$text-color; text-shadow:1px 1px 1px #FFF; left:8px}
+.sched {position:relative; padding:15px 5px 0; height: 68px;float:left; width:120px; background:url(../images/sched_btn_bg.png) bottom no-repeat; text-align:center; font-family:"condensad", Arial, Helvetica, sans-serif ; font-size:25px; color:$text-color; text-shadow:1px 1px 1px #FFF; left:8px}
 .sched:hover {height:70px; cursor:pointer; padding:17px 5px 0}
 .weekchanger {height:20px;padding: 15px 5px; font-size:24px; font-weight:bold; width:130px;}
 .teams_box{width:100%; margin:20px auto 0; position:relative; top:-20px; text-align: center;}
@@ -523,7 +541,7 @@ p label {display: inline; margin-bottom: 0;}
 #tabell tr :nth-child(1){font-weight:bold; font-size: 10px;}
 #tabell tbody tr:nth-child(odd){background-color:#F9F9F9}
 #tabell tbody tr:nth-child(even){background-color:#E5E5E5}
-#tabell_div {padding:10px 0 10px;background: url(images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
+#tabell_div {padding:10px 0 10px;background: url(../images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
 -moz-border-radius: 5px; margin-bottom:20px;
 border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible; box-shadow:5px 5px 5px #CCC}
 #tabell_div_logo{margin: 10px auto -27px; width:120px; left:20px; position:relative}
@@ -536,14 +554,14 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 #resultat tr :nth-child(1){font-weight:bold; font-size: 10px;}
 #resultat tbody tr:nth-child(odd){background-color:#F9F9F9}
 #resultat tbody tr:nth-child(even){background-color:#E5E5E5}
-#resultat_div {padding:10px 0 10px;background: url(images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
+#resultat_div {padding:10px 0 10px;background: url(../images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
 -moz-border-radius: 5px; margin-bottom:20px;
 border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible; box-shadow:5px 5px 5px #CCC}
 #resultat_div_logo{margin: 10px auto -27px; width:120px; left:20px; position:relative}
 
 #resultat_div_page {padding:10px 0 10px; margin-bottom:20px;
 background:#F9F9F9; overflow:visible; border-top:1px solid #999}
-#tabell_div_page {padding:0 0 10px;background: url(images/tableheader.png) top no-repeat; margin-bottom:20px;
+#tabell_div_page {padding:0 0 10px;background: url(../images/tableheader.png) top no-repeat; margin-bottom:20px;
 background:#fff; overflow:visible; width:500px;}
 
 
@@ -554,22 +572,22 @@ background:#fff; overflow:visible; width:500px;}
 #resultat_div_page #resultat tr :nth-child(8){font-weight:normal; font-size: 12px;}
 #resultat_div_page #resultat tr :nth-child(1){font-weight:normal; font-size: 12px;}
 #resultat_div_page #resultat tbody tr:nth-child(even){background-color:#E5E5E5}
-#resultat_div_page #resultat_div {padding:10px 0 10px;background: url(images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
+#resultat_div_page #resultat_div {padding:10px 0 10px;background: url(../images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
 -moz-border-radius: 5px; margin-bottom:20px;
 border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible; box-shadow:5px 5px 5px #CCC}
 #resultat_div_page #resultat_div_logo{margin: 10px auto -27px; width:120px; left:20px; position:relative}
 
 .right_logo{position:absolute;}
 
-#saff{background:url(images/rightlogos/saff.png) bottom no-repeat; height:25px; width:107px; }
+#saff{background:url(../images/rightlogos/saff.png) bottom no-repeat; height:25px; width:107px; }
 #saff:hover{background-position:bottom; cursor:pointer}
-#safe{background:url(images/sslogo.png) bottom no-repeat; height:75px; width:59px; }
+#safe{background:url(../images/sslogo.png) bottom no-repeat; height:75px; width:59px; }
 #safe:hover{background-position:bottom; cursor:pointer}
-#ifaf{background:url(images/rightlogos/ifaf.png) bottom no-repeat; height:38px; width:64px; }
+#ifaf{background:url(../images/rightlogos/ifaf.png) bottom no-repeat; height:38px; width:64px; }
 #ifaf:hover{background-position:bottom; cursor:pointer}
-#tds{background:url(images/rightlogos/tds.png) bottom no-repeat; height:53px; width:45px; }
+#tds{background:url(../images/rightlogos/tds.png) bottom no-repeat; height:53px; width:45px; }
 #tds:hover{background-position:bottom; cursor:pointer}
-#ep{background:url(images/rightlogos/ep.png) bottom no-repeat; height:28px; width:59px; }
+#ep{background:url(../images/rightlogos/ep.png) bottom no-repeat; height:28px; width:59px; }
 #ep:hover{background-position:bottom; cursor:pointer}
 
 /*SS-historik*/
@@ -609,7 +627,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 
 #teams h1 {line-height:100px;}
 
-.lagruta {padding:0 5px 10px;background: url(images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
+.lagruta {padding:0 5px 10px;background: url(../images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
 -moz-border-radius: 5px; margin-bottom:20px;
 border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible; box-shadow:5px 5px 5px #CCC;font-size:12px;}
 
@@ -664,7 +682,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 	width: 900px;
 	margin:0 auto;
 	position:relative;
-	background:url(images/gamehdrbg.jpg) repeat-x top;
+	background:url(../images/gamehdrbg.jpg) repeat-x top;
 	height:96px;
 	padding:5px;
 	box-shadow: 0 0 5px #666;
