@@ -77,7 +77,7 @@
         </div>
     </div>
     </header>
-    <div class="grid white-bg no-padding">
+    <div class="grid grid--extra-wide">
         <div class="grid__item one-whole">
             <div class="menu-box">
                 <div>
@@ -134,4 +134,4 @@
             </div>
         </div>
         <?php }?>
-	<section class="grid white-bg">
+	<section class="grid white-bg main" role="main">

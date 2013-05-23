@@ -1,0 +1,10 @@
+/*------------------------------------*\
+    _SHAME.SCSS
+\*------------------------------------*/
+
+/* HAMPUS PERSSON */
+.site-footer__links-light {
+    a {
+        line-height: 75px; /* Magic number, borde sättas via JS för att matcha bild-länkarna */
+    }
+}
