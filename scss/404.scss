@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    404.SCSS
+\*------------------------------------*/
+@import "compass";
+
+html {
+	@include background-image( linear-gradient( #002040, #003c79 ) );
+}
+.error404 {
+	margin-top: 2em;
+	background-color: transparent;
+	color: #fff;
+	font-size: 1.1em;
+	line-height: 1.5;
+	text-align: justify;
+
+	h1 {
+		color: #fff;
+		text-align: center;
+		font-size: 3em;
+		text-shadow: none;
+	}
+	.wrapper {
+		margin: 0 auto;
+		max-width: 675px;
+	}
+}

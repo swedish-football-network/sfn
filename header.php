@@ -26,7 +26,6 @@
 	?></title>
 
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-    <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" />
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >

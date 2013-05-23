@@ -1,0 +1,33 @@
+/*------------------------------------*\
+    404.SCSS
+\*------------------------------------*/
+/* line 6, ../scss/404.scss */
+html {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #002040), color-stop(100%, #003c79));
+  background-image: -webkit-linear-gradient(#002040, #003c79);
+  background-image: -moz-linear-gradient(#002040, #003c79);
+  background-image: -o-linear-gradient(#002040, #003c79);
+  background-image: linear-gradient(#002040, #003c79);
+}
+
+/* line 9, ../scss/404.scss */
+.error404 {
+  margin-top: 2em;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.1em;
+  line-height: 1.5;
+  text-align: justify;
+}
+/* line 17, ../scss/404.scss */
+.error404 h1 {
+  color: #fff;
+  text-align: center;
+  font-size: 3em;
+  text-shadow: none;
+}
+/* line 23, ../scss/404.scss */
+.error404 .wrapper {
+  margin: 0 auto;
+  max-width: 675px;
+}
