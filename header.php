@@ -99,7 +99,7 @@
                 <div class="game" onclick="javascript:location.href='<?php the_permalink() ?>';">
                     <div class="date">
 
-                            <?php echo date('D', get_field("datum")); echo " "; the_field('tid') ?>
+                            <?php echo date('D', $date); echo " "; the_field('tid') ?>
                     </div>
                     <div style="position:absolute; bottom:27px;width:100%">
                         <div style="position:relative;float:left;width:65%; margin-left:13px ;font-weight:bold; line-height:15px">
