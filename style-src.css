@@ -682,11 +682,15 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 
 #left_game {
 	font-size:12px;
-	width:270px;
+	width:48%;
+	float:left;
+	position: relative;
 }
 #right_game {
 	font-size:12px;
-	width:270px;
+	width:48%;
+	float:right;
+	position: relative;
 }
 #middle_game{
 	width:362px;
@@ -705,10 +709,6 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 .game_panels .header {height:8px;}
 .game_panels .header:hover {cursor:pointer}
 .game_panels .headerSortDown, .game_panels .headerSortUp {background:#CCC}
-.game_panels tbody tr td:nth-child(5),.game_panels thead tr th:nth-child(5){visibility:hidden}
-.game_panels tbody tr td:nth-child(6),.game_panels thead tr th:nth-child(6){visibility:hidden}
-.game_panels tbody tr td:nth-child(7),.game_panels thead tr th:nth-child(7){visibility:hidden}
-.game_panels tbody tr td:nth-child(8),.game_panels thead tr th:nth-child(8){visibility:hidden}
 
 #middle_game #tabell_div {box-shadow:none}
 .texten_game{
@@ -716,3 +716,32 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 	line-height:normal
 }
 .rubriken{font-family: "condensad", Arial, Helvetica, sans-serif; font-size:16px;}
+#info_pane {display: block;}
+#roster_pane{display: none}
+
+.button{
+	float:left;
+	position: relative;
+	padding:6px 20px;
+	background:#e2e2e2;
+	margin:10px;
+	font-size:20px;
+	font-family: "condensad", Arial, Helvetica, sans-serif ;
+	border:1px solid #777777;
+	color:#777777;
+}
+.active_button{
+	float:left;
+	position: relative;
+	padding:6px 20px;
+	background:#e2e2e2;
+	margin:10px;
+	font-size:20px;
+	font-family: "condensad", Arial, Helvetica, sans-serif ;
+	border:1px solid #000;
+	color:#000;
+}
+
+.button:hover, .active_button:hover {
+	cursor:pointer
+}

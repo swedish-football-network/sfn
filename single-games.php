@@ -1,44 +1,133 @@
-<?php
-/*
-Template Name: results
-*/
-?>
-
 <?php get_header(); ?>
 
-<?php if (have_posts()) : while (have_posts()) : the_post(); 
-	$division = get_the_title();?>
-    <div id="headline-single"><?php the_title(); ?> <?php edit_post_link(__('Edit', 'gray_white_black'), '', ''); ?></div>
-      <div class="full-post">
+	<?php 
+	if (have_posts()) : while (have_posts()) : the_post(); 
+		$temp = get_field('hemmalag');
+		$id = $temp[0]->ID;
+		$hemmabild = get_field("logo",$id);
+		$hemmaroster = get_field("roster",$id);
+		$hemmalag = get_the_title($id);
+		if(get_field("link", $id) == 1){
+			$hemmalink = get_permalink($id);
+		}else{
+			$hemmalink = "nope";
+		}
+		
+		$temp = get_field('bortalag');
+		$id = $temp[0]->ID;
+		$bortabild = get_field("logo",$id);
+		$bortaroster = get_field("roster",$id);
+		$bortalag = get_the_title($id);
+		if(get_field("link", $id) == 1){
+			$bortalink = get_permalink($id);
+		}else{
+			$bortalink = "nope";
+		}
+		
+		$hemmares = get_field("hemmares");
+		$bortares = get_field("bortares");
+		$datum = get_field("datum");
+		$matchtid = get_field("matchtid");
+		$serie = get_field("serie");
+		$tid = get_field("tid");
+		$rubrik = get_the_title();
+		$content = get_the_content();
+		$stream = get_field("stream");
+		$twitter = get_field("twitter");
+		
+	
+	?>
+	
+    <div class="full-post">
+        <div id="game_header">
+        	<div id="hemmalag_hdr" class="hdr hemma">
+            	<?php if($hemmalink != "nope"){echo "<a href='" . $hemmalink . "'>" . $hemmalag . "</a>";}else{echo $hemmalag;} ?>
+            </div>
+            <div id="hemmabild_hdr" class="hdr hemma" <?php if($hemmabild["url"] != ""){ ?> style='background:url(<?php echo $hemmabild["url"] ?>) no-repeat center #fff' <?php } ?>>
+			<?php 
+			if($hemmabild["url"] != ""){
+			?>	
+				<img src="<?php bloginfo("template_directory") ?>/images/overlay_game.png"/>
+			<?php
+            };
+			?>
+            	
+            </div>
+            <div id="hemmares_hdr" class="hdr hemma">
+            	<?php echo $hemmares ?>
+            </div>
+            
+            <div id="mitten" class="hdr">
+            	<div id="serie_hdr">
+                	<?php echo $serie ?>
+                </div>
+                <div id="tiden">
+                	<?php 
+					if($hemmares != "" and $matchtid == ""){
+						echo "SLUT";
+					}else if($hemmares == ""){
+						echo date('j/n',strtotime($datum)) . " " . $tid;
+					}else{
+						echo $matchtid;	
+					}
+						
+					
+					
+					
+					
+					
+					?>
+                </div>
+            </div>
+            
+            <div id="bortalag_hdr" class="hdr borta">
+            	<?php if($bortalink != "nope"){echo "<a href='" . $bortalink . "'>" . $bortalag . "</a>";}else{echo $bortalag;} ?>
+            </div>
+            <div id="bortabild_hdr" class="hdr borta" <?php if($bortabild["url"] != ""){ ?> style='background:url(<?php echo $bortabild["url"] ?>) no-repeat center #fff' <?php } ?>>
+			<?php 
+			if($bortabild["url"] != ""){
+			?>	
+				<img src="<?php bloginfo("template_directory") ?>/images/overlay_game.png"/>
+			<?php
+            };
+			?>
+            	
+            </div>
+            <div id="bortares_hdr" class="hdr borta">
+            	<?php echo $bortares ?>
+            </div>
+        </div>
     </div>
-    <div class="main">
+    <div id="info_button" class="active_button">Info</div>
+    <div id="roster_button" class="button">Roster</div>
+    <div class="main" style="width:100%">
 	<div class="box full-post">
-		
-		
-		
-		<?php the_content(); ?>
-		<?php wp_link_pages(array('before' => '<p class="pages"><strong>'.__('Pages', 'gray_white_black').':</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
-	</div>
-	<?php if(has_tag()): ?>
-	<div class="box tags">
-		<p class="tags"><span><?php the_tags(""); ?></span></p>
-	</div>
-	<?php endif; ?>
-		<p><?php posts_nav_link(); ?></p>
+	
+	
+	
+	<div id="info_pane">
+<div class="main" style="width:63%">
+	
+	<?php 
+	if($rubrik == "" && $content == ""){
+		echo "Ingen övrig info om matchen än";
+	}else{
+		echo "<h1>".$rubrik."</h1>";
+		echo $content; 
+	}
+	?>
+	
+</div>		
+<div class="sidebar">
 
-				
-
-			
-	<?php endwhile; endif; ?>
-</div>
-
-<div id="tabell_div_page">
-<?php
+	<div id="tabell_div">
+    
+		<?php
 		$lag = array();
 		$links = array();
 		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => 100 ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
-			if(get_field('serie') == $division){
+			if(get_field('serie') == $serie){
 				$lagnamn = get_the_title();
 				array_push($lag, $lagnamn);
 				if(get_field("link") == 1){
@@ -58,9 +147,9 @@ Template Name: results
 			$paga = 0;
 			$games = array();
 	  		
-			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 200 ) );
+			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 100 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
-				if(get_field("hemmares") != ""){
+				if(get_field("hemmares") != ""){	
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
 					$hemmalag = get_the_title($hemmalag) ;
@@ -103,8 +192,7 @@ Template Name: results
 			}
 		endwhile;
 		
-        if($wins + $loss + $tie == 0){$percent = 0;}else{$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));}
-        $tabell[] = array(
+		 if($wins + $loss + $tie == 0){$percent = 0;}else{$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));}        $tabell[] = array(
                 "lag" => $laget,
                 "games" => $games,
                 "g" => $wins + $loss + $tie,
@@ -114,7 +202,7 @@ Template Name: results
                 "pfor" => $pfor,
                 "paga" => $paga,
                 "p" => $wins * $ppergame,
-                "per" => $percent,
+                "per" => $percent
         );
 };
  
@@ -162,8 +250,6 @@ function sort_array($a, $b){
         }
 }
  
-usort($tabell, 'sort_array');
-print_table( $tabell, $links);
 
 function print_table( $tabell , $ar) {
         echo "<table id='tabell' border=0 cellpadding=3>";
@@ -197,91 +283,43 @@ function print_table( $tabell , $ar) {
                 echo "</tr>";
         }
         echo "</table></div>";
-}
-
-$resultat = array();
-$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 200 ) );
-			while ( $loop->have_posts() ) : $loop->the_post();
-				if(get_field("serie") == $division){
-					$temp = get_field('hemmalag');
-					$id = $temp[0]->ID;
-					$hemmalag = get_the_title($id);
-					if(get_field("link", $id) == 1){
-						$hemmalink = get_permalink($id);
-					}else{
-						$hemmalink = "nope";
-					}
-					
-					$temp = get_field('bortalag');
-					$id = $temp[0]->ID;
-					$bortalag = get_the_title($id);
-					if(get_field("link", $id) == 1){
-						$bortalink = get_permalink($id);
-					}else{
-						$bortalink = "nope";
-					}
-					
-					$temp = array(
-						"hemmalink" => $hemmalink,
-						"bortalink" => $bortalink,
-						"hemmalag" => $hemmalag,
-						"bortalag" => $bortalag,
-						"hemmares" => get_field("hemmares"),
-						"bortares" => get_field("bortares"),
-						"datum" => get_field("datum"),
-						"matchlink" => get_permalink(),
-						"tid" => get_field("tid"),
-					);
-					array_push($resultat, $temp);
-				} 
-		endwhile; 
-function cmp($a, $b)
-{
-    return strcmp($a["datum"], $b["datum"]);
-}
-
-usort($resultat, "cmp");
-  ?>      
+		 
+	}
 	
-<div id="resultat_div_page">
-	<table id="resultat">
-    		<?php 
-			$vecka = 0;
-			$veckatemp = 0;
-			foreach($resultat as $match){ 
-				$datum = strtotime($match["datum"]);
-				$veckatemp = date('W', $datum);
-				
-				if($vecka != $veckatemp){
-					?>
-					<tr <?php if($veckatemp == date("W")){echo "style='background:#EEE; color:#000;border-left: 1px solid #999; border-right:1px solid #999; border-top:1px solid #999'";}else if($veckatemp - 1 == date("W")){echo "style='border-top: 1px solid #999'";}else{echo "style='background:#fff'";}; ?> ><td style="font-weight:bold; padding-top:5px;"><?php echo "Vecka " . $veckatemp ?></td><td></td></tr>
-                	<?php
-					$vecka = $veckatemp;
-				}
-				?>
-			 	<tr <?php if($vecka == date("W")){echo "style='background:#EEE; color:#000; border-left: 1px solid #999; border-right:1px solid #999; font-size:16px; padding:5px'";} ?>>
-                    <td <?php if($vecka == date("W")){echo "style='color:#000;'";} ?>>
-						<?php if($match["hemmalink"] != "nope"){echo "<a href='" . $match["hemmalink"] . "'>" . $match["hemmalag"] . "</a>"; }else{ echo $match["hemmalag"]; } ?> 
-                        - 
-                        <?php if($match["bortalink"] != "nope"){echo "<a href='" . $match["bortalink"] . "'>" . $match["bortalag"] . "</a>"; }else{ echo $match["bortalag"]; } ?> 
-                    </td>
-                    <td <?php if($vecka == date("W")){echo "style='color:#000; font-size:14px; text-align:right'";} ?> style="text-align:right">
-						<?php 
-						if($match["hemmares"] != ""){  
-							echo "<a href='" . $match["matchlink"] . "'>" .  $match["hemmares"] . " - " . $match["bortares"] . "</a>";
-						}else{
-							echo "<a href='" . $match["matchlink"] . "'>" .  date("j/n", strtotime($match["datum"])) . " " . $match["tid"] . "</a>";	
-						}
-						?>
-                    </td>
-               </tr>
-            <?php		
-			}
-			?> 
-    </table>
+	usort($tabell, 'sort_array');
+	print_table( $tabell, $links);
+
+?>
+        <!--<div class="lagruta" id="ovrig">
+        <div class="lagruta_hdr">Info</div>
+        <?php
+	        //  if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a>"};
+	        //  if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>"};
+        ?>
+    </div>-->
+</div>	   	
+
+	</div>
+	<div id="roster_pane">
+		<div id="left_game" class="game_panels">
+	    
+	    	<?php 
+	    	if($hemmaroster != ""){echo $hemmaroster;}else{echo "Laget har ingen roster på SFN";}
+	    	?>
+	        &nbsp;
+	    </div>
+	    <div id="right_game" class="game_panels">
+	    	<?php if($bortaroster != ""){echo $bortaroster;}else{echo "Laget har ingen roster på SFN";}?>
+	        &nbsp;
+	    </div>	
+	</div>	
+		
+		
+	</div>
+
+			<div id="comments" class="box comments"><?php comments_template();?></div>
+            
+	<?php endwhile; endif; ?>
+    
 </div>
-
-
-	
-  
 <?php get_footer(); ?>

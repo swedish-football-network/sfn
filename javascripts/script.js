@@ -3,6 +3,23 @@
 |------------------------------------------------------------------------*/
 
 (function($) {
+	$("#roster_button").click(function(){
+		if($(this).hasClass("button") == true){
+			$(".active_button").removeClass("active_button").addClass("button");
+			$(this).removeClass("button").addClass("active_button");
+		}
+		$("#roster_pane").show();
+		$("#info_pane").hide();
+	})
+	$("#info_button").click(function(){
+		if($(this).hasClass("button") == true){
+			$(".active_button").removeClass("active_button").addClass("button");
+			$(this).removeClass("button").addClass("active_button");
+		}
+		$("#roster_pane").hide();
+		$("#info_pane").show();
+	})
+
 	$('#login-button').on('click', function(e) {
 		e.stopPropagation();
 		var position = $(this).offset();
@@ -27,11 +44,11 @@
 	 *
 	 */
 	if( $().tablesorter ) {
-		var head = $("#roster table tbody").find("tr:first-child").html();
+		var head = $(".game_panels table tbody").find("tr:first-child").html();
 		head = "<thead><tr>"+head+"</tr></thead>";
-		$("#roster table tbody").find("tr:first-child").remove();
-		$("#roster table tbody").before(head);
-		$("#roster table thead td").each(function(index) {
+		$(".game_panels table tbody").find("tr:first-child").remove();
+		$(".game_panels table tbody").before(head);
+		$(".game_panels table thead td").each(function(index) {
 			var content = $(this).text();
 		  	var thisTD = this;
 		  	var newElement = $("<th></th>");
@@ -41,7 +58,7 @@
 		  	$(this).after(newElement).remove();
 			$(newElement).text(content);
 		});
-		$("#roster table").tablesorter();
+		$(".game_panels table").tablesorter();
 		$("#tabell_div table tbody tr td").each(function(){
 			if($("#hiddenteamforjscript").text() == $(this).text()){
 				$(this).parent().css("background","#94A8C5");

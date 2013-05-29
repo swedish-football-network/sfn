@@ -106,7 +106,7 @@
 			}
 		endwhile;
 		
-		$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));
+		 if($wins + $loss + $tie == 0){$percent = 0;}else{$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));}
         $tabell[] = array(
                 "lag" => $laget,
                 "games" => $games,

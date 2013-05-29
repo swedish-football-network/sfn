@@ -1,7 +1,7 @@
 <div class="sidebar">
 <?php 
-$tblActive = false;
-$rsltActive = false;
+$tblActive = true;
+$rsltActive = true;
 if ($tblActive == true){ /* Start Tabell-if */
 ?>
 <div id="tabell_div_logo"><img src="<?php bloginfo('template_directory'); ?>/images/tbl_ss_logo.png" /></div>	
@@ -77,7 +77,7 @@ if ($tblActive == true){ /* Start Tabell-if */
 				}
 			endwhile;
 		
-		$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));
+		 if($wins + $loss + $tie == 0){$percent = 0;}else{$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));}
         $tabell[] = array(
                 "lag" => $laget,
                 "games" => $games,

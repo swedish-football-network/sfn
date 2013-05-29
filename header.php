@@ -74,8 +74,8 @@
         </div>
 		<?php
 		//
-        $start_week = 59;
-        $last_week = 60;
+        $start_week = 22;
+        $last_week = 50;
         $real_week = date('W');
         $fb_week = $real_week - $start_week; ?>
 
@@ -114,7 +114,7 @@
                 </div>
             <?php }
 			endwhile; ?>
-            <div class="sched" onclick="javascript:location.href='?page_id=4620';">
+            <div class="sched" onclick="javascript:location.href='/superserien/';">
             	Spelschema
             </div>
         </div>
