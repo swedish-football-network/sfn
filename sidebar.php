@@ -234,7 +234,7 @@ usort($resultat, "cmp");
 			foreach($resultat as $match){ 
 				if($match["serie"] != $serie){
 					?>
-				<tr><td><?php echo $match["serie"] ?></td><td></td></tr>
+				<tr><td><?php echo "<span style='font-weight:bold'>".$match["serie"]."</span>" ?></td><td></td></tr>
                 <?php
 					$serie = $match["serie"];
 				}
