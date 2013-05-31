@@ -36,10 +36,10 @@ echo '<?xml version="1.0"?>';
 $image =  wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
   ?>
   <item>
-    <title><?php echo get_the_title$post->ID); ?></title>
+    <title><?php echo get_the_title($post->ID); ?></title>
     <link><?php echo get_permalink($post->ID); ?></link>
     <featuredImage><?php echo $image[0]; ?></featuredImage>
-    <description><?php echo '<![CDATA['.rss_text_limit($post->post_content, 100).'<br/><br/>Läs mer hos SFN: <a href="'.get_permalink($post->ID).'">'.get_the_title($post->ID).'</a>'.']]>';  ?></description>
+    <description><?php echo rss_text_limit($post->post_content, 250);  ?></description>
     <pubDate><?php rss_date( strtotime($post->post_date_gmt) ); ?></pubDate>
     <guid><?php echo get_permalink($post->ID); ?></guid>
   </item>
