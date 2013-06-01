@@ -10,7 +10,7 @@ if ($tblActive == true){ /* Start Tabell-if */
 		<?php
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => 100 ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1 ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
 			if(get_field('serie') == 'Superserien'){
 				$lagnamn = get_the_title();
@@ -32,7 +32,7 @@ if ($tblActive == true){ /* Start Tabell-if */
 			$paga = 0;
 			$games = array();
 	  		
-			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 300 ) );
+			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				if(get_field('matchtid') == ""){
 				if(get_field("hemmares") != ""){
@@ -184,7 +184,7 @@ $dayofweek = date('N');
 $real_week = date('W');
 
 if($dayofweek == "1" or $dayofweek == "2"){$real_week = $real_week - 1;};
-$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 300 ) );
+$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				$game_week = date("W",strtotime(get_field("datum")));
 				if(get_field("serie") != "Superserien" and $game_week == $real_week){

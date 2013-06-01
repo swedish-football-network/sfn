@@ -36,7 +36,7 @@ Template Name: results
 <?php
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => 100 ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1 ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
 			if(get_field('serie') == $division){
 				$lagnamn = get_the_title();
@@ -58,8 +58,9 @@ Template Name: results
 			$paga = 0;
 			$games = array();
 	  		
-			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 200 ) );
+			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
+			if(get_field('matchtid') == ""){
 				if(get_field("hemmares") != ""){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
@@ -100,7 +101,8 @@ Template Name: results
                         $games[$hemmalag]['s'][] = get_field('bortares') . "-" . get_field('hemmares'); // score, för spårbarhet
                         $games[$hemmalag]['diff'] += get_field('bortares')-get_field('hemmares'); // målskillnad i inbördes möten
               };
-			}
+			};
+			};
 		endwhile;
 		
         if($wins + $loss + $tie == 0){$percent = 0;}else{$percent = (($wins + ($tie / 2))/($wins + $loss + $tie));}
@@ -200,7 +202,7 @@ function print_table( $tabell , $ar) {
 }
 
 $resultat = array();
-$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 200 ) );
+$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				if(get_field("serie") == $division){
 					$temp = get_field('hemmalag');
