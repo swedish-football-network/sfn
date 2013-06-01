@@ -81,7 +81,7 @@
 
        	<?php if($real_week >= $start_week && $real_week <= $last_week){ ?>
         <div id="games">
-        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 100 ) ); ?>
+        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 100) ); ?>
             <?php while ( $loop->have_posts() ) : $loop->the_post();
 			$temp = get_field('hemmalag');
 			$hemmalag = $temp[0]->ID;
@@ -99,7 +99,18 @@
                 <div class="game" onclick="javascript:location.href='<?php the_permalink() ?>';">
                     <div class="date">
 
-                            <?php echo date('D', $date); echo " "; the_field('tid') ?>
+                            <?php 
+                            if(get_field('matchtid') == ''){
+	                            if(get_field('hemmares') != ''){
+		                            echo "Matchen slut";
+	                            }else{
+	                            	echo date('D', $date); echo " "; 
+	                            	the_field('tid'); 
+	                            }
+                            }else{
+                            	the_field('matchtid');
+                            };
+                            ?>
                     </div>
                     <div style="position:absolute; bottom:27px;width:100%">
                         <div style="position:relative;float:left;width:65%; margin-left:13px ;font-weight:bold; line-height:15px">
