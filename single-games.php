@@ -113,7 +113,7 @@
 		echo "Ingen övrig info om matchen än";
 	}else{
 		echo "<h1>".$rubrik."</h1>";
-		echo $content; 
+		the_content(); 
 	}
 	?>
 	
@@ -290,15 +290,16 @@ function print_table( $tabell , $ar) {
 	
 	usort($tabell, 'sort_array');
 	print_table( $tabell, $links);
-
+if($twitter != "" || $stream != ""){
 ?>
-        <!--<div class="lagruta" id="ovrig">
+        <div class="lagruta" id="ovrig">
         <div class="lagruta_hdr">Info</div>
         <?php
-	        //  if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a>"};
-	        //  if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>"};
+	        if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a><br>";};
+	        if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>";};
         ?>
-    </div>-->
+    </div>
+    <?php }; ?>
 </div>	   	
 
 	</div>
