@@ -10,7 +10,17 @@
 	 */
 	global $page, $paged;
 
-
+	 function sort_game_array($a, $b){
+	 	$ettan = $a['datum'] + strtotime($a['tid']);
+	 	$tvaan = $b['datum'] + strtotime($b['tid']);
+	 	
+	 	if($ettan != $tvaan){
+	 		return $ettan > $tvaan;
+	 	}else{
+		 	return 0;
+	 	}
+	 	
+	 };
 
 	// Add the blog name.
 	bloginfo( 'name' );
@@ -74,58 +84,78 @@
         </div>
 		<?php
 		//
+		$matcher = array();
         $start_week = 22;
         $last_week = 50;
         $real_week = date('W');
-        $fb_week = $real_week - $start_week; ?>
+        $fb_week = $real_week - $start_week; 
+        $dayofweek = date('N');
 
-       	<?php if($real_week >= $start_week && $real_week <= $last_week){ ?>
+        if($dayofweek == "1" or $dayofweek == "2"){$real_week = $real_week - 1;};
+       	if($real_week >= $start_week && $real_week <= $last_week){ ?>
         <div id="games">
         
-        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => 100 ) ); ?>
+        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) ); ?>
             <?php while ( $loop->have_posts() ) : $loop->the_post();
-			$temp = get_field('hemmalag');
-			$hemmalag = $temp[0]->ID;
-			$hemmalag = get_the_title($hemmalag) ;
-
-			$temp = get_field('bortalag');
-			$bortalag = $temp[0]->ID;
-			$bortalag = get_the_title($bortalag) ;
-
-			$date = strtotime(get_field("datum"));
-			$game_week = date('W', $date);
-
-
-			if(get_field('serie') == "Superserien" and $game_week == $real_week){?>
-                <div class="game" <?php if(get_field('matchtid') == "" && get_field("hemmares") != ""){echo " style='height:62px;'";};?>  onclick="javascript:location.href='<?php the_permalink() ?>';">
+	            $date = strtotime(get_field("datum"));
+	            $game_week = date('W', $date);
+	            if(get_field('serie') == "Superserien" and $game_week == $real_week){
+					$temp = get_field('hemmalag');
+					$hemmalag = $temp[0]->ID;
+					$hemmalag = get_the_title($hemmalag) ;
+		
+					$temp = get_field('bortalag');
+					$bortalag = $temp[0]->ID;
+					$bortalag = get_the_title($bortalag) ;
+					
+					$matcher[] = array(
+			                "hemmalag" => $hemmalag,
+			                "bortalag" => $bortalag,
+			                "datum" => $date,
+			                "hemmares" => get_field('hemmares'),
+			                "bortares" => get_field('bortares'),
+			                "matchtid" => get_field('matchtid'),
+			                "tid" => get_field('tid'),
+			                "link" => get_permalink()
+			        );
+			   };
+		    endwhile; 
+		    	
+		    	
+		    	
+		        usort($matcher, 'sort_game_array');
+		        
+		        foreach($matcher as $match){
+		        ?>
+                <div class="game" <?php if($match['matchtid'] == "" && $match["hemmares"] != ""){echo " style='height:62px;'";};?>  onclick="javascript:location.href='<?php echo $match['link'] ?>';">
                     <div class="date">
 
                             <?php 
-                            if(get_field('matchtid') == ''){
-	                            if(get_field('hemmares') != ''){
+                            if($match['matchtid'] == ''){
+	                            if($match['hemmares'] != ''){
 		                            //Matchen är klar
 	                            }else{
-	                            	echo date('D', $date); echo " "; 
-	                            	the_field('tid'); 
+	                            	echo date('D', $match['datum']); echo " "; 
+	                            	echo $match['tid']; 
 	                            }
                             }else{
-                            	the_field('matchtid');
+                            	echo $match['matchtid'];
                             };
                             ?>
                     </div>
                     <div style="position:absolute; bottom:27px;width:100%">
                         <div style="position:relative;float:left;width:65%; margin-left:13px ;font-weight:bold; line-height:15px">
-                            <?php echo $hemmalag; ?><br />
-                            <?php echo $bortalag; ?>
+                            <?php echo $match['hemmalag']; ?><br />
+                            <?php echo $match['bortalag']; ?>
                         </div>
                         <div style="position:relative;float:left;width:20%; text-align:right; line-height:15px">
-                            <?php the_field('hemmares'); ?><br />
-                            <?php the_field('bortares'); ?>
+                            <?php echo $match['hemmares']; ?><br />
+                            <?php echo $match['bortares']; ?>
                         </div>
                     </div>
                 </div>
-            <?php }
-			endwhile; ?>
+            <?php }; ?>
+			
             <div class="sched" onclick="javascript:location.href='/superserien/';">
             	Spelschema
             </div>
