@@ -16,7 +16,7 @@ function my_plugin_options() {
 
 
 if ( ! isset( $content_width ) )
-$content_width = 630;
+$content_width = 568;
 
 add_action( 'init', 'create_post_type' );
 function create_post_type() {
