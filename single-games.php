@@ -34,6 +34,7 @@
 		$content = get_the_content();
 		$stream = get_field("stream");
 		$twitter = get_field("twitter");
+		$stats = get_field("stats");
 		
 	
 	?>
@@ -232,8 +233,8 @@ function sort_array($a, $b){
                         } else {
                                 if( $a['games'][$b['lag']]['diff'] != 0 ) { /* målskillnad i inbördes möten */
                                         return ($a['games'][$b['lag']]['diff'] > 0) ? -1 : 1;
-                                } else { /* mest gjorda poäng */
-                                        return ($a['pfor'] > $b['pfor']) ? -1 : 1;
+                                } else { /* Total målskillnad */
+                                        return (($a['pfor'] - $a['paga']) > ($b['pfor'] - $b['paga'])) ? -1 : 1;
                                 }
                         }
                 }
@@ -295,8 +296,8 @@ function print_table( $tabell , $ar) {
         <div class="lagruta" id="ovrig">
         <div class="lagruta_hdr">Info</div>
         <?php
-	        if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a><br>";}else{echo "Matchen livetwittras inte.";};
-	        if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>";}else{echo "Matchen livetstreamas inte.";};
+	        if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a><br>";}else{echo "Ingen livetwitter har registrerats.<br>";};
+	        if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>";}else{echo "Ingen livestream har registrerats.";};
         ?>
     </div>
 </div>	   	
@@ -317,7 +318,7 @@ function print_table( $tabell , $ar) {
 	</div>	
 	<div id="stats_pane">
 	<?php
-	    	if(get_field('stats') != ""){the_field('stats');}else{echo "Statistiken kommer visas här så fort den är inrapporterad.";}
+	    	if($stats != ""){echo $stats;}else{echo "Statistiken kommer visas här så fort den är inrapporterad.";}
 	?>
 	</div>	
 		
