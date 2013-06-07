@@ -10,6 +10,8 @@
 		}
 		$("#roster_pane").show();
 		$("#info_pane").hide();
+		$("#stats_pane").hide();
+		
 	})
 	$("#info_button").click(function(){
 		if($(this).hasClass("button") == true){
@@ -18,6 +20,16 @@
 		}
 		$("#roster_pane").hide();
 		$("#info_pane").show();
+		$("#stats_pane").hide();
+	})
+	$("#stats_button").click(function(){
+		if($(this).hasClass("button") == true){
+			$(".active_button").removeClass("active_button").addClass("button");
+			$(this).removeClass("button").addClass("active_button");
+		}
+		$("#roster_pane").hide();
+		$("#info_pane").hide();
+		$("#stats_pane").show();
 	})
 
 	$('#login-button').on('click', function(e) {

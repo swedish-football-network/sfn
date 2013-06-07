@@ -98,8 +98,9 @@
             </div>
         </div>
     </div>
-    <div id="info_button" class="active_button">Info</div>
+    <div id="info_button" class="active_button">Previews</div>
     <div id="roster_button" class="button">Roster</div>
+    <div id="stats_button" class="button">Stats</div>
     <div class="main" style="width:100%">
 	<div class="box full-post">
 	
@@ -315,6 +316,11 @@ if($twitter != "" || $stream != ""){
 	    	<?php if($bortaroster != ""){echo $bortaroster;}else{echo "Laget har ingen roster på SFN";}?>
 	        &nbsp;
 	    </div>	
+	</div>	
+	<div id="stats_pane">
+	<?php
+	    	if(get_field('stats') != ""){the_field('stats');}else{echo "Statistiken kommer visas här så fort den är inrapporterad.";}
+	?>
 	</div>	
 		
 		
