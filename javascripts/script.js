@@ -3,6 +3,9 @@
 |------------------------------------------------------------------------*/
 
 (function($) {
+		$("#roster_pane").hide();
+		$("#info_pane").show();
+		$("#stats_pane").hide();
 	$("#roster_button").click(function(){
 		if($(this).hasClass("button") == true){
 			$(".active_button").removeClass("active_button").addClass("button");

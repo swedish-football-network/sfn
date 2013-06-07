@@ -291,16 +291,14 @@ function print_table( $tabell , $ar) {
 	
 	usort($tabell, 'sort_array');
 	print_table( $tabell, $links);
-if($twitter != "" || $stream != ""){
 ?>
         <div class="lagruta" id="ovrig">
         <div class="lagruta_hdr">Info</div>
         <?php
-	        if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a><br>";};
-	        if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>";};
+	        if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a><br>";}else{echo "Matchen livetwittras inte.";};
+	        if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>";}else{echo "Matchen livetstreamas inte.";};
         ?>
     </div>
-    <?php }; ?>
 </div>	   	
 
 	</div>
@@ -326,7 +324,7 @@ if($twitter != "" || $stream != ""){
 		
 	</div>
 
-			<div id="comments" class="box comments"><?php comments_template();?></div>
+			<div id="comments" class="box comments"><?php $withcomments = "1"; comments_template(); ?></div>
             
 	<?php endwhile; endif; ?>
     

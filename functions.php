@@ -24,7 +24,8 @@ function create_post_type() {
 		array(
 			'labels' => array(
 				'name' => __( 'Games' ),
-				'singular_name' => __( 'Game' )
+				'singular_name' => __( 'Game' ),
+				'supports'		=> array("title", "editor", "thumbnail", "author", "custom-fields", "comments")
 			),
 		'public' => true,
 		'has_archive' => true,
