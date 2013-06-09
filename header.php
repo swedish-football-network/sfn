@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes('xhtml'); ?>><head profile="http://gmpg.org/xfn/11">
   <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
-	<meta property="og:image" content="http://www.swedishfootballnetwork.se/wp-content/themes/gray-white-black/images/sfn_logo2.png"/>
+	<meta property="og:image" content="<?php echo get_template_directory_uri(); ?>/images/sfn_logo2.png"/>
 
     <title><?php
 	/*
@@ -13,13 +13,13 @@
 	 function sort_game_array($a, $b){
 	 	$ettan = $a['datum'] + strtotime($a['tid']);
 	 	$tvaan = $b['datum'] + strtotime($b['tid']);
-	 	
+
 	 	if($ettan != $tvaan){
 	 		return $ettan > $tvaan;
 	 	}else{
 		 	return 0;
 	 	}
-	 	
+
 	 };
 
 	// Add the blog name.
@@ -88,13 +88,13 @@
         $start_week = 22;
         $last_week = 50;
         $real_week = date('W');
-        $fb_week = $real_week - $start_week; 
+        $fb_week = $real_week - $start_week;
         $dayofweek = date('N');
 
         if($dayofweek == "1" or $dayofweek == "2"){$real_week = $real_week - 1;};
        	if($real_week >= $start_week && $real_week <= $last_week){ ?>
         <div id="games">
-        
+
         <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) ); ?>
             <?php while ( $loop->have_posts() ) : $loop->the_post();
 	            $date = strtotime(get_field("datum"));
@@ -103,11 +103,11 @@
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
 					$hemmalag = get_the_title($hemmalag) ;
-		
+
 					$temp = get_field('bortalag');
 					$bortalag = $temp[0]->ID;
 					$bortalag = get_the_title($bortalag) ;
-					
+
 					$matcher[] = array(
 			                "hemmalag" => $hemmalag,
 			                "bortalag" => $bortalag,
@@ -119,24 +119,24 @@
 			                "link" => get_permalink()
 			        );
 			   };
-		    endwhile; 
-		    	
-		    	
-		    	
+		    endwhile;
+
+
+
 		        usort($matcher, 'sort_game_array');
-		        
+
 		        foreach($matcher as $match){
 		        ?>
                 <div class="game" <?php if($match['matchtid'] == "" && $match["hemmares"] != ""){echo " style='height:62px;'";};?>  onclick="javascript:location.href='<?php echo $match['link'] ?>';">
                     <div class="date">
 
-                            <?php 
+                            <?php
                             if($match['matchtid'] == ''){
 	                            if($match['hemmares'] != ''){
 		                            //Matchen är klar
 	                            }else{
-	                            	echo date('D', $match['datum']); echo " "; 
-	                            	echo $match['tid']; 
+	                            	echo date('D', $match['datum']); echo " ";
+	                            	echo $match['tid'];
 	                            }
                             }else{
                             	echo $match['matchtid'];
@@ -155,7 +155,7 @@
                     </div>
                 </div>
             <?php }; ?>
-			
+
             <div class="sched" onclick="javascript:location.href='/superserien/';">
             	Spelschema
             </div>
