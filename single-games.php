@@ -125,6 +125,8 @@
 	<div id="tabell_div">
     
 		<?php
+		$save_team_home = $hemmalag;
+		$save_team_away = $bortalag;
 		$lag = array();
 		$links = array();
 		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1 ) );
@@ -298,6 +300,7 @@ function print_table( $tabell , $ar) {
         <?php
 	        if($twitter != ""){echo "<a href='".$twitter."' target='_blank'>Länk till livetwitter</a><br>";}else{echo "Ingen livetwitter har registrerats.<br>";};
 	        if($stream != ""){echo "<a href='".$stream."' target='_blank'>Länk till livestream</a>";}else{echo "Ingen livestream har registrerats.";};
+
         ?>
     </div>
 </div>	   	
@@ -307,13 +310,35 @@ function print_table( $tabell , $ar) {
 		<div id="left_game" class="game_panels">
 	    
 	    	<?php 
-	    	if($hemmaroster != ""){echo $hemmaroster;}else{echo "Laget har ingen roster på SFN";}
+	    	$con=mysqli_connect("localhost","root","kalle123","wordpress");
+				mysqli_set_charset($con, "utf8");
+				// Check connection
+				if (mysqli_connect_errno())
+				  {
+				  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+				  }
+	    	$result = mysqli_query($con,"SELECT * FROM spelare where team = '" . $save_team_home . "'");
+				echo "<table id='team-roster' style='width:100%'><thead><tr class='header'><th>#</th><th>Förnamn</th><th>Efternamn</th><th>Pos</th><th>Längd</th><th>Vikt</th><tr><thead><tbody>";
+				while($row = mysqli_fetch_array($result))
+				  {
+				  echo "<tr><td>" . $row['number'] . "</td>" . "<td>" . $row['f_name'] . "</td>" . "<td>" . $row['l_name'] . "</td>" . "<td>" . $row['pos'] . "</td>" . "<td>" . $row['length'] . "</td>" . "<td>" . $row['width'] . "</td></tr>"; 
+				  };
+				echo "</tbody></table>";
 	    	?>
 	        &nbsp;
 	    </div>
 	    <div id="right_game" class="game_panels">
-	    	<?php if($bortaroster != ""){echo $bortaroster;}else{echo "Laget har ingen roster på SFN";}?>
-	        &nbsp;
+	    	<?php
+	    	$result = mysqli_query($con,"SELECT * FROM spelare where team = '" . $save_team_away . "'");
+				echo "<table id='team-roster' style='width:100%'><thead><tr class='header'><th>#</th><th>Förnamn</th><th>Efternamn</th><th>Pos</th><th>Längd</th><th>Vikt</th><tr><thead><tbody>";
+				while($row = mysqli_fetch_array($result))
+				  {
+				  echo "<tr><td>" . $row['number'] . "</td>" . "<td>" . $row['f_name'] . "</td>" . "<td>" . $row['l_name'] . "</td>" . "<td>" . $row['pos'] . "</td>" . "<td>" . $row['length'] . "</td>" . "<td>" . $row['width'] . "</td></tr>"; 
+				  };
+				echo "</tbody></table>";
+				mysqli_close($con);
+	    	?>
+	       
 	    </div>	
 	</div>	
 	<div id="stats_pane">
