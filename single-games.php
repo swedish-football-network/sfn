@@ -310,7 +310,7 @@ function print_table( $tabell , $ar) {
 		<div id="left_game" class="game_panels">
 	    
 	    	<?php 
-	    	$con=mysqli_connect("localhost","root","kalle123","wordpress");
+	    	$con=mysqli_connect("localhost","wordpress","dukes4gold","SFN");
 				mysqli_set_charset($con, "utf8");
 				// Check connection
 				if (mysqli_connect_errno())

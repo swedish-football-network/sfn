@@ -15,7 +15,11 @@
 			
 		<?php echo "<img class='logo' src='" . $logo["url"] . "' />";?> <h1><?php the_title(); ?> <?php edit_post_link(__('Edit', 'gray_white_black'), '', ''); ?></h1>
 		
-        <?php echo "<img class='lagbild' src='" . $lagbild["url"] . "' />";?>
+        <?php 
+        if($lagbild["url"] != ""){
+        	echo "<img class='lagbild' src='" . $lagbild["url"] . "' />";
+        };
+        ?>
 		<div class="roster_hdr">Coachstab</div>
         <div id="coacher" class="lagtabeller">
         	<?php echo $coacher;?>
@@ -24,7 +28,7 @@
         <div id="roster" class="lagtabeller">
 			<?php
 				
-				$con=mysqli_connect("localhost","root","kalle123","wordpress");
+				$con=mysqli_connect("localhost","wordpress","dukes4gold","SFN");
 				mysqli_set_charset($con, "utf8");
 				// Check connection
 				if (mysqli_connect_errno())
@@ -35,7 +39,19 @@
 				echo "<table id='team-roster'><thead><tr class='header'><th>#</th><th>Förnamn</th><th>Efternamn</th><th>Pos</th><th>Längd</th><th>Vikt</th><th>Ålder</th><th>Erfar.</th><th>Moderklubb</th><tr><thead><tbody>";
 				while($row = mysqli_fetch_array($result))
 				  {
-				  echo "<tr><td>" . $row['number'] . "</td>" . "<td>" . $row['f_name'] . "</td>" . "<td>" . $row['l_name'] . "</td>" . "<td>" . $row['pos'] . "</td>" . "<td>" . $row['length'] . "</td>" . "<td>" . $row['width'] . "</td>" . "<td>" . (date("Y")-$row['born']) . "</td>" . "<td>" . (date("Y")-$row['play_since']) . "</td>" . "<td>" . $row['start_play']  . "</td></tr>"; 
+				  echo "<tr><td>" . $row['number'] . "</td>" . "<td>" . $row['f_name'] . "</td>" . "<td>" . $row['l_name'] . "</td>" . "<td>" . $row['pos'] . "</td>" . "<td>" . $row['length'] . "</td>" . "<td>" . $row['width'] . "</td>";
+				  
+				  	if($row['born'] != 0 && $row['born'] != null){
+				   		echo "<td>" . (date("Y")-$row['born']) . "</td>";
+				   	}else{
+					   	echo "<td></td>";
+				   	}
+				   	if($row['play_since'] != 0 && $row['play_since'] != null){
+				   		echo "<td>" . (date("Y")-$row['play_since']) . "</td>"; 
+				   	}else{
+					   	echo "<td></td>";
+				   	}
+				   	echo "<td>" . $row['start_play']  . "</td></tr>"; 
 				  };
 				echo "</tbody></table>";
 				mysqli_close($con);
