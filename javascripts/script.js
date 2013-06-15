@@ -58,12 +58,12 @@
 	 * Only run if the tablesorter plugin has been loaded by WordPress
 	 *
 	 */
-	if( $().tablesorter ) {
-		$("#team-roster").tablesorter();
+	//if( $().tablesorter ) {
+		$(".team-roster").tablesorter();
 		$("#tabell_div table tbody tr td").each(function(){
 			if($("#hiddenteamforjscript").text() == $(this).text()){
 				$(this).parent().css("background","#94A8C5");
 			};
 		});
-	}
+	//}
 }) (jQuery);

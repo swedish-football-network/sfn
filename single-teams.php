@@ -36,7 +36,7 @@
 				  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 				  }
 				$result = mysqli_query($con,"SELECT * FROM spelare where team = '" . get_the_title() . "'");
-				echo "<table id='team-roster'><thead><tr class='header'><th>#</th><th>Förnamn</th><th>Efternamn</th><th>Pos</th><th>Längd</th><th>Vikt</th><th>Ålder</th><th>Erfar.</th><th>Moderklubb</th><tr><thead><tbody>";
+				echo "<table class='team-roster'><thead><tr class='header'><th>#</th><th>Förnamn</th><th>Efternamn</th><th>Pos</th><th>Längd</th><th>Vikt</th><th>Ålder</th><th>Erfar.</th><th>Moderklubb</th><tr><thead><tbody>";
 				while($row = mysqli_fetch_array($result))
 				  {
 				  echo "<tr><td>" . $row['number'] . "</td>" . "<td>" . $row['f_name'] . "</td>" . "<td>" . $row['l_name'] . "</td>" . "<td>" . $row['pos'] . "</td>" . "<td>" . $row['length'] . "</td>" . "<td>" . $row['width'] . "</td>";
@@ -51,7 +51,7 @@
 				   	}else{
 					   	echo "<td></td>";
 				   	}
-				   	echo "<td>" . $row['start_play']  . "</td></tr>"; 
+				   	echo "<td style='font-size:10px'>" . $row['start_play']  . "</td></tr>"; 
 				  };
 				echo "</tbody></table>";
 				mysqli_close($con);
