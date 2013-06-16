@@ -132,6 +132,8 @@ function sort_array($a, $b){
                         } else {
                                 if( $a['games'][$b['lag']]['diff'] != 0 ) { /* målskillnad i inbördes möten */
                                         return ($a['games'][$b['lag']]['diff'] > 0) ? -1 : 1;
+                                } else { /* Total målskillnad */
+                                        return (($a['pfor'] - $a['paga']) > ($b['pfor'] - $b['paga'])) ? -1 : 1;
                                 }
                         }
                 }
@@ -247,7 +249,7 @@ usort($resultat, "cmp");
                         - 
                         <?php if($match["bortalink"] != "nope"){echo "<a href='" . $match["bortalink"] . "'>" . $match["bortalag"] . "</a>"; }else{ echo $match["bortalag"]; } ?> 
                     </td>
-                    <td>
+                    <td style="width:55px;">
               		<?php 
 					if($match["hemmares"] != ""){
 						echo "<a href='" . $match["matchlink"] . "'>" . $match["hemmares"] . " - " . $match["bortares"] . "</a>";
