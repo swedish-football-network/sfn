@@ -229,8 +229,9 @@ function cmp($a, $b)
 }
 
 usort($resultat, "cmp");
+
+if(count($resultat) > 0){	
   ?>      
-	
 <div id="resultat_div">
 	<table id="resultat">
     		<?php 
@@ -268,6 +269,7 @@ usort($resultat, "cmp");
 </div>
 
 		<?php
+		}
 } /*Slut Resultat-if*/
 		if (!dynamic_sidebar('sidebar-widget-area') ) : ?>
 		<div class="widget">
