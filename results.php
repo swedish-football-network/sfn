@@ -36,7 +36,7 @@ Template Name: results
 <?php
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1 ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'DESC' ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
 			if(get_field('serie') == $division){
 				$lagnamn = get_the_title();

@@ -10,7 +10,7 @@ if ($tblActive == true){ /* Start Tabell-if */
 		<?php
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien', 'orderby' => 'title', 'order' => 'DESC' ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
 			if(get_field('serie') == 'Superserien'){
 				$lagnamn = get_the_title();
@@ -38,11 +38,11 @@ if ($tblActive == true){ /* Start Tabell-if */
 				if(get_field("hemmares") != ""){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
-					$hemmalag = get_the_title($hemmalag) ;
+					$hemmalag = get_the_title($hemmalag);
 					
 					$temp = get_field('bortalag');
 					$bortalag = $temp[0]->ID;
-					$bortalag = get_the_title($bortalag) ;
+					$bortalag = get_the_title($bortalag);
 					
 					if($hemmalag == $laget){
                         if(get_field('hemmares') < get_field('bortares')) {
@@ -100,12 +100,13 @@ if ($tblActive == true){ /* Start Tabell-if */
  *  - poäng
  *  - seriepoäng i inbördes möten
  *  - målskillnad i inbördes möten
- *  - mest gjorda poäng
+ *  - Total Målskillnad
  *
  * Olika antal matcher
  *  - procent
  *  - seriepoäng i inbördes möten
  *  - målskillnad i inbördes möten
+ *  - Total målskillnad
  */
 function sort_array($a, $b){
         if( $a['g'] == $b['g'] ) { /* om lagen spelat likan många matcher */

@@ -64,15 +64,15 @@
 		  <p class="logo"><a href="<?php echo home_url(); ?>" name="top"><img src="<?php bloginfo('template_directory'); ?>/images/sfn_logo2.png" /></a></p>
 		</div>
 		<div class="teams_box">
-        	<img src="<?php bloginfo('template_directory'); ?>/images/trclogo.png" />
-		  	<img src="<?php bloginfo('template_directory'); ?>/images/kplogo.png" />
-		  	<img src="<?php bloginfo('template_directory'); ?>/images/stulogo.png" />
-            <img src="<?php bloginfo('template_directory'); ?>/images/ajlogo.png" />
+        	<a href="/teams/tyreso-royal-crowns/"><img src="<?php bloginfo('template_directory'); ?>/images/trclogo.png" /></a>
+		  	<a href="/teams/kristianstad-predators/"><img src="<?php bloginfo('template_directory'); ?>/images/kplogo.png" /></a>
+		  	<a href="/teams/stu-northside-bulls/"><img src="<?php bloginfo('template_directory'); ?>/images/stulogo.png" /></a>
+            <a href="/teams/arlanda-jets/"><img src="<?php bloginfo('template_directory'); ?>/images/ajlogo.png" /></a>
             <a href="http://safelit.wordpress.com" target="_blank"><img style="margin:0 20px" src="<?php bloginfo('template_directory'); ?>/images/sslogo.png" /></a>
-            <img src="<?php bloginfo('template_directory'); ?>/images/obklogo.png" />
-           <img src="<?php bloginfo('template_directory'); ?>/images/smmlogo.png" />
-            <img src="<?php bloginfo('template_directory'); ?>/images/u86logo.png" />
-            <img src="<?php bloginfo('template_directory'); ?>/images/cclogo.png" />
+            <a href="/teams/orebro-black-knights/"><img src="<?php bloginfo('template_directory'); ?>/images/obklogo.png" /></a>
+            <a href="/teams/stockholm-mean-machines/"><img src="<?php bloginfo('template_directory'); ?>/images/smmlogo.png" /></a>
+            <a href="/teams/uppsala-86ers/"><img src="<?php bloginfo('template_directory'); ?>/images/u86logo.png" /></a>
+            <a href="/teams/carlstad-crusaders/"><img src="<?php bloginfo('template_directory'); ?>/images/cclogo.png" /></a>
 		</div>
     </div>
 		<div class="menubox">
