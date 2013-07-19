@@ -343,7 +343,7 @@ function print_table( $tabell , $ar) {
 	       
 	    </div>	
 	</div>	
-	<div id="stats_pane">
+	<div id="stats_pane" style="width:100%">
 	<?php
 	    	if($stats != ""){echo $stats;}else{echo "Statistiken kommer visas här så fort den är inrapporterad.";}
 	?>
