@@ -31,7 +31,9 @@ Template Name: results
 			
 	<?php endwhile; endif; ?>
 </div>
-
+<?php
+if(get_the_title() != "Division 1 slutspel"){
+?>
 <div id="tabell_div_page">
 <?php
 		$lag = array();
@@ -60,7 +62,7 @@ Template Name: results
 	  		
 			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
-			if(get_field('matchtid') == ""){
+				if(get_field('matchtid') == "" and strpos(get_the_title(), 'inal') == false){
 				if(get_field("hemmares") != ""){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
@@ -201,6 +203,8 @@ function print_table( $tabell , $ar) {
                 echo "</tr>";
         }
         echo "</table></div>";
+        
+}
 }
 
 $resultat = array();
@@ -258,7 +262,12 @@ usort($resultat, "cmp");
 				
 				if($vecka != $veckatemp){
 					?>
-					<tr <?php if($veckatemp == date("W")){echo "style='background:#EEE; color:#000;border-left: 1px solid #999; border-right:1px solid #999; border-top:1px solid #999'";}else if($veckatemp - 1 == date("W")){echo "style='border-top: 1px solid #999'";}else{echo "style='background:#fff'";}; ?> ><td style="font-weight:bold; padding-top:5px;"><?php echo "Vecka " . $veckatemp ?></td><td></td></tr>
+					<tr <?php if($veckatemp == date("W")){echo "style='background:#EEE; color:#000;border-left: 1px solid #999; border-right:1px solid #999; border-top:1px solid #999'";}else if($veckatemp - 1 == date("W")){echo "style='border-top: 1px solid #999'";}else{echo "style='background:#fff'";}; ?> ><td style="font-weight:bold; padding-top:5px;">
+					<?php 
+					if($veckatemp == 37){echo "Final";}else if($veckatemp == 36){echo "Semifinal";}else{echo "Vecka " . $veckatemp;}
+					 ?>
+					
+					</td><td></td></tr>
                 	<?php
 					$vecka = $veckatemp;
 				}
