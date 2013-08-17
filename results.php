@@ -170,7 +170,7 @@ function sort_array($a, $b){
  
 usort($tabell, 'sort_array');
 print_table( $tabell, $links);
-
+}
 function print_table( $tabell , $ar) {
         echo "<table id='tabell' border=0 cellpadding=3>";
                 echo "<tr>";
@@ -205,7 +205,7 @@ function print_table( $tabell , $ar) {
         echo "</table></div>";
         
 }
-}
+
 
 $resultat = array();
 $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
@@ -239,6 +239,7 @@ $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 						"datum" => get_field("datum"),
 						"matchlink" => get_permalink(),
 						"tid" => get_field("tid"),
+						"serie" => get_field("serie")
 					);
 					array_push($resultat, $temp);
 				} 
@@ -264,7 +265,7 @@ usort($resultat, "cmp");
 					?>
 					<tr <?php if($veckatemp == date("W")){echo "style='background:#EEE; color:#000;border-left: 1px solid #999; border-right:1px solid #999; border-top:1px solid #999'";}else if($veckatemp - 1 == date("W")){echo "style='border-top: 1px solid #999'";}else{echo "style='background:#fff'";}; ?> ><td style="font-weight:bold; padding-top:5px;">
 					<?php 
-					if($veckatemp == 37){echo "Final";}else if($veckatemp == 36){echo "Semifinal";}else{echo "Vecka " . $veckatemp;}
+					if($veckatemp == 37 && ($match["serie"] == "Superserien" || $match["serie"] == "Division 1 Dam")){echo "Final";}else if($veckatemp == 36 && ($match["serie"] == "Superserien")){echo "Semifinal";}else{echo "Vecka " . $veckatemp;}
 					 ?>
 					
 					</td><td></td></tr>
