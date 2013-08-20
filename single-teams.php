@@ -99,7 +99,7 @@
 	  		
 			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
-			if(get_field('matchtid') == ""){
+				if(get_field('matchtid') == "" and strpos(get_the_title(), 'inal') == false){
 				if(get_field("hemmares") != ""){	
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;

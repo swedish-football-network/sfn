@@ -14,7 +14,7 @@
 		$("#roster_pane").show();
 		$("#info_pane").hide();
 		$("#stats_pane").hide();
-		
+
 	})
 	$("#info_button").click(function(){
 		if($(this).hasClass("button") == true){
