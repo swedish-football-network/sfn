@@ -10,7 +10,7 @@ if ($tblActive == true){ /* Start Tabell-if */
 		<?php
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien', 'orderby' => 'title', 'order' => 'DESC' ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
 			if(get_field('serie') == 'Superserien'){
 				$lagnamn = get_the_title();
@@ -38,11 +38,11 @@ if ($tblActive == true){ /* Start Tabell-if */
 				if(get_field("hemmares") != ""){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
-					$hemmalag = get_the_title($hemmalag) ;
+					$hemmalag = get_the_title($hemmalag);
 					
 					$temp = get_field('bortalag');
 					$bortalag = $temp[0]->ID;
-					$bortalag = get_the_title($bortalag) ;
+					$bortalag = get_the_title($bortalag);
 					
 					if($hemmalag == $laget){
                         if(get_field('hemmares') < get_field('bortares')) {
@@ -100,12 +100,13 @@ if ($tblActive == true){ /* Start Tabell-if */
  *  - poäng
  *  - seriepoäng i inbördes möten
  *  - målskillnad i inbördes möten
- *  - mest gjorda poäng
+ *  - Total Målskillnad
  *
  * Olika antal matcher
  *  - procent
  *  - seriepoäng i inbördes möten
  *  - målskillnad i inbördes möten
+ *  - Total målskillnad
  */
 function sort_array($a, $b){
         if( $a['g'] == $b['g'] ) { /* om lagen spelat likan många matcher */
@@ -132,6 +133,8 @@ function sort_array($a, $b){
                         } else {
                                 if( $a['games'][$b['lag']]['diff'] != 0 ) { /* målskillnad i inbördes möten */
                                         return ($a['games'][$b['lag']]['diff'] > 0) ? -1 : 1;
+                                } else { /* Total målskillnad */
+                                        return (($a['pfor'] - $a['paga']) > ($b['pfor'] - $b['paga'])) ? -1 : 1;
                                 }
                         }
                 }
@@ -187,7 +190,7 @@ if($dayofweek == "1" or $dayofweek == "2"){$real_week = $real_week - 1;};
 $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				$game_week = date("W",strtotime(get_field("datum")));
-				if(get_field("serie") != "Superserien" and $game_week == $real_week){
+				if((get_field("serie") != "Superserien" and $game_week == $real_week) or get_field("serie") == "Womens World Cup"){
 					$temp = get_field('hemmalag');
 					$id = $temp[0]->ID;
 					$hemmalag = get_the_title($id);
@@ -223,12 +226,21 @@ $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 		endwhile; 
 function cmp($a, $b)
 {
+    if(strcmp($a["serie"], $b["serie"])==0){
+	    $ettan = strtotime($a['datum']) + strtotime($a['tid']);
+		$tvaan = strtotime($b['datum']) + strtotime($b['tid']);
+	
+		return $ettan - $tvaan;
+    };
     return strcmp($a["serie"], $b["serie"]);
-}
+    
+};
+
 
 usort($resultat, "cmp");
+
+if(count($resultat) > 0){	
   ?>      
-	
 <div id="resultat_div">
 	<table id="resultat">
     		<?php 
@@ -247,7 +259,7 @@ usort($resultat, "cmp");
                         - 
                         <?php if($match["bortalink"] != "nope"){echo "<a href='" . $match["bortalink"] . "'>" . $match["bortalag"] . "</a>"; }else{ echo $match["bortalag"]; } ?> 
                     </td>
-                    <td>
+                    <td style="width:55px;">
               		<?php 
 					if($match["hemmares"] != ""){
 						echo "<a href='" . $match["matchlink"] . "'>" . $match["hemmares"] . " - " . $match["bortares"] . "</a>";
@@ -266,6 +278,7 @@ usort($resultat, "cmp");
 </div>
 
 		<?php
+		}
 } /*Slut Resultat-if*/
 		if (!dynamic_sidebar('sidebar-widget-area') ) : ?>
 		<div class="widget">

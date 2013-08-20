@@ -6,7 +6,6 @@
 	$info = get_field("info");
 	$logo = get_field("logo");
 	$stadium = get_field("arena");
-	$roster = get_field("roster");
 	$coacher = get_field("coacher");
 	$lagbild = get_field("lagbild");
 	$aktuellltlag = get_the_title();
@@ -16,14 +15,51 @@
 			
 		<?php echo "<img class='logo' src='" . $logo["url"] . "' />";?> <h1><?php the_title(); ?> <?php edit_post_link(__('Edit', 'gray_white_black'), '', ''); ?></h1>
 		
-        <?php echo "<img class='lagbild' src='" . $lagbild["url"] . "' />";?>
+        <?php 
+        if($lagbild["url"] != ""){
+        	echo "<img class='lagbild' src='" . $lagbild["url"] . "' />";
+        };
+        ?>
 		<div class="roster_hdr">Coachstab</div>
         <div id="coacher" class="lagtabeller">
         	<?php echo $coacher;?>
         </div>
         <div class="roster_hdr">Roster</div>
         <div id="roster" class="lagtabeller">
-			<?php echo $roster;?>
+			<?php
+				
+				$con=mysqli_connect("localhost","wordpress","dukes4gold","SFN");
+				mysqli_set_charset($con, "utf8");
+				// Check connection
+				if (mysqli_connect_errno())
+				  {
+				  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+				  }
+				$result = mysqli_query($con,"SELECT * FROM spelare where team = '" . get_the_title() . "'");
+				echo "<table class='team-roster'><thead><tr class='header'><th>#</th><th>Förnamn</th><th>Efternamn</th><th>Pos</th><th>Längd</th><th>Vikt</th><th>Ålder</th><th>Erfar.</th><th>Moderklubb</th><tr><thead><tbody>";
+				while($row = mysqli_fetch_array($result))
+				  {
+				  echo "<tr><td>" . $row['number'] . "</td>" . "<td>" . $row['f_name'] . "</td>" . "<td>" . $row['l_name'] . "</td>" . "<td>" . $row['pos'] . "</td>" . "<td>" . $row['length'] . "</td>" . "<td>" . $row['width'] . "</td>";
+				  
+				  	if($row['born'] != 0 && $row['born'] != null){
+				   		echo "<td>" . (date("Y")-$row['born']) . "</td>";
+				   	}else{
+					   	echo "<td></td>";
+				   	}
+				   	if($row['play_since'] != 0 && $row['play_since'] != null){
+				   		echo "<td>" . (date("Y")-$row['play_since']) . "</td>"; 
+				   	}else{
+					   	echo "<td></td>";
+				   	}
+				   	echo "<td style='font-size:10px'>" . $row['start_play']  . "</td></tr>"; 
+				  };
+				echo "</tbody></table>";
+				mysqli_close($con);
+				?>
+			
+			
+			
+			
         </div>	
 		</div>
 		<?php if ( comments_open() ) : ?>
@@ -161,6 +197,8 @@ function sort_array($a, $b){
                         } else {
                                 if( $a['games'][$b['lag']]['diff'] != 0 ) { /* målskillnad i inbördes möten */
                                         return ($a['games'][$b['lag']]['diff'] > 0) ? -1 : 1;
+                                } else { /* Total målskillnad */
+                                        return (($a['pfor'] - $a['paga']) > ($b['pfor'] - $b['paga'])) ? -1 : 1;
                                 }
                         }
                 }

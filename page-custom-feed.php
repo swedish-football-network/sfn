@@ -22,8 +22,10 @@ $posts = query_posts('order_by=date&order=DESC&category_name=superserien&showpos
 $lastpost = $numposts - 1;
 
 header("Content-Type: application/rss+xml; charset=UTF-8");
-echo '<?xml version="1.0"?>';
-?><rss version="2.0">
+//echo '';
+?>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
 <channel>
   <title>SFN - News for SM-final</title>
   <link>http://swedishfootballnetwork.se/</link>

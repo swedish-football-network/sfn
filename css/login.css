@@ -1,0 +1,51 @@
+body.login {
+	background-color: #00396B;
+}
+
+#login {
+	padding-top: 60px;
+}
+
+.login form {
+	border: 0;
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.login input[type=submit] {
+	background-image: none;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #00396B;
+	text-shadow: none;
+	background-color: #FEFE53;
+}
+
+.login input[type=submit]:hover {
+	background-image: none;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #00396B;
+	text-shadow: none;
+	background-color: #D9D944;
+}
+
+.login input[type=text], .login input[type=password] {
+	padding: .5em;
+}
+
+.login #nav, .login #backtoblog {
+	text-shadow: none;
+}
+
+#loginform {
+
+}
+body.login h1 a {
+	background-image: url('../images/sfn_logo2.png');
+	height: 200px;
+	background-size: auto;
+}

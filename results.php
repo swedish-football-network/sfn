@@ -36,7 +36,7 @@ Template Name: results
 <?php
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1 ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'DESC' ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
 			if(get_field('serie') == $division){
 				$lagnamn = get_the_title();
@@ -158,6 +158,8 @@ function sort_array($a, $b){
                         } else {
                                 if( $a['games'][$b['lag']]['diff'] != 0 ) { /* målskillnad i inbördes möten */
                                         return ($a['games'][$b['lag']]['diff'] > 0) ? -1 : 1;
+                                } else { /* Total målskillnad */
+                                        return (($a['pfor'] - $a['paga']) > ($b['pfor'] - $b['paga'])) ? -1 : 1;
                                 }
                         }
                 }

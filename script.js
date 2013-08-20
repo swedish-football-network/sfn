@@ -58,12 +58,26 @@
 	 * Only run if the tablesorter plugin has been loaded by WordPress
 	 *
 	 */
-	//if( $().tablesorter ) {
-		$(".team-roster").tablesorter();
+	if( $().tablesorter ) {
+		var head = $(".game_panels table tbody").find("tr:first-child").html();
+		head = "<thead><tr>"+head+"</tr></thead>";
+		$(".game_panels table tbody").find("tr:first-child").remove();
+		$(".game_panels table tbody").before(head);
+		$(".game_panels table thead td").each(function(index) {
+			var content = $(this).text();
+		  	var thisTD = this;
+		  	var newElement = $("<th></th>");
+		  	$.each(this.attributes, function(index) {
+				$(newElement).attr(thisTD.attributes[index].name, thisTD.attributes[index].value);
+		  	});
+		  	$(this).after(newElement).remove();
+			$(newElement).text(content);
+		});
+		$(".game_panels table").tablesorter();
 		$("#tabell_div table tbody tr td").each(function(){
 			if($("#hiddenteamforjscript").text() == $(this).text()){
 				$(this).parent().css("background","#94A8C5");
 			};
 		});
-	//}
+	}
 }) (jQuery);

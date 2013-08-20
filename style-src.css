@@ -483,7 +483,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 #resultat .lagnamn{width:150px; font-size:10px; font-weight:bold;}
 #resultat td{padding: 2px 4px; background:none;}
 #resultat tr :nth-child(8){font-weight:bold; font-size: 10px;}
-#resultat tr :nth-child(1){font-weight:normal; font-size: 10px;}
+#resultat tr :nth-child(1){font-weight:bold; font-size: 10px;}
 #resultat tbody tr:nth-child(odd){background-color:#F9F9F9}
 #resultat tbody tr:nth-child(even){background-color:#E5E5E5}
 #resultat_div {padding:10px 0 10px;background: url(images/tableheader.png) top no-repeat;-webkit-border-radius: 5px;
@@ -744,4 +744,5 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 
 .button:hover, .active_button:hover {
 	cursor:pointer
+}
 }
