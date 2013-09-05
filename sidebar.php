@@ -3,7 +3,7 @@
 $tblActive = true;
 $rsltActive = true;
 if ($tblActive == true){ /* Start Tabell-if */
-$tbl = file_get_contents("http://localhost/wordpress2/tblscript.php");
+$tbl = file_get_contents("./tbl.txt");
 echo $tbl;
 ?>
 
