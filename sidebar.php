@@ -3,6 +3,10 @@
 $tblActive = true;
 $rsltActive = true;
 if ($tblActive == true){ /* Start Tabell-if */
+?>
+<div id='tabell_div_logo><img src='http://www.swedishfootballnetwork.com/wp-content/themes/sfn/images/tbl_ss_logo.png' /></div>
+
+<?php
 $tbl = file_get_contents("./tbl.txt");
 echo $tbl;
 ?>

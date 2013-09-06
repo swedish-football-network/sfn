@@ -91,9 +91,10 @@
         $real_week = date('W');
         $fb_week = $real_week - $start_week;
         $dayofweek = date('N');
-
+      if($real_week != 36 || !is_home()){  
         if($dayofweek == "1" or $dayofweek == "2"){$real_week = $real_week - 1;};
        	if($real_week >= $start_week && $real_week <= $last_week){ ?>
+        
         <div id="games">
 
         <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) ); ?>
@@ -161,8 +162,112 @@
             	Spelschema
             </div>
         </div>
-        <?php }?>
+        <?php }
+        echo '<div class="content">'; 
+	        }else if(is_home() && $real_week == 36){
+		echo '<div class="content">';        	
+		$idgm = 8740;
+		$temp = get_field('hemmalag',$idgm);
+		$id = $temp[0]->ID;
+		$hemmabild = get_field("logo",$id);
+		$hemmaroster = get_field("roster",$id);
+		$hemmalag = get_the_title($id);
+		if(get_field("link", $id) == 1){
+			$hemmalink = get_permalink($id);
+		}else{
+			$hemmalink = "nope";
+		}
+		
+		$temp = get_field('bortalag',$idgm);
+		$id = $temp[0]->ID;
+		$bortabild = get_field("logo",$id);
+		$bortaroster = get_field("roster",$id);
+		$bortalag = get_the_title($id);
+		if(get_field("link", $id) == 1){
+			$bortalink = get_permalink($id);
+		}else{
+			$bortalink = "nope";
+		}
+		
+		$hemmares = get_field("hemmares",$idgm);
+		$bortares = get_field("bortares",$idgm);
+		$datum = get_field("datum",$idgm);
+		$matchtid = get_field("matchtid",$idgm);
+		$serie = get_field("serie",$idgm);
+		$tid = get_field("tid",$idgm);
+		$rubrik = get_the_title($idgm);
+		$content = get_the_content($idgm);
+		$stream = get_field("stream",$idgm);
+		$twitter = get_field("twitter",$idgm);
+		$stats = get_field("stats",$idgm);
+		
+	
+	?>
+	
+    	<div style="width:396px;position:relative;margin-left: auto;margin-right:auto;"><img src="<?php bloginfo("template_directory") ?>/images/finallogo.png"/></div>
+        <div id="game_header" style="margin-bottom:20px;" onclick="location.href='http://www.swedishfootballnetwork.se/games/sm-final/';">
+        	<div id="hemmalag_hdr" class="hdr hemma">
+            	<?php if($hemmalink != "nope"){echo "<a href='" . $hemmalink . "'>" . $hemmalag . "</a>";}else{echo $hemmalag;} ?>
+            </div>
+            <div id="hemmabild_hdr" class="hdr hemma" <?php if($hemmabild["url"] != ""){ ?> style='background:url(<?php echo $hemmabild["url"] ?>) no-repeat center #fff' <?php } ?>>
+			<?php 
+			if($hemmabild["url"] != ""){
+			?>	
+				<img src="<?php bloginfo("template_directory") ?>/images/overlay_game.png"/>
+			<?php
+            };
+			?>
+            	
+            </div>
+            <div id="hemmares_hdr" class="hdr hemma">
+            	<?php echo $hemmares ?>
+            </div>
+            
+            <div id="mitten" class="hdr">
+            	<div id="serie_hdr">
+                	<?php echo $serie ?>
+                </div>
+                <div id="tiden">
+                	<?php 
+					if($hemmares != "" and $matchtid == ""){
+						echo "SLUT";
+					}else if($hemmares == ""){
+						echo date('j/n',strtotime($datum)) . " " . $tid;
+					}else{
+						echo $matchtid;	
+					}
+						
+					
+					
+					
+					
+					
+					?>
+                </div>
+            </div>
+            
+            <div id="bortalag_hdr" class="hdr borta">
+            	<?php if($bortalink != "nope"){echo "<a href='" . $bortalink . "'>" . $bortalag . "</a>";}else{echo $bortalag;} ?>
+            </div>
+            <div id="bortabild_hdr" class="hdr borta" <?php if($bortabild["url"] != ""){ ?> style='background:url(<?php echo $bortabild["url"] ?>) no-repeat center #fff' <?php } ?>>
+			<?php 
+			if($bortabild["url"] != ""){
+			?>	
+				<img src="<?php bloginfo("template_directory") ?>/images/overlay_game.png"/>
+			<?php
+            };
+			?>
+            	
+            </div>
+            <div id="bortares_hdr" class="hdr borta">
+            	<?php echo $bortares ?>
+            </div>
+        </div>
+    
+    	<?php
+	        }
+        ?>
 
 
 
-	<div class="content">
+	
