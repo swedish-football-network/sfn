@@ -519,8 +519,11 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 #ifaf:hover{background-position:bottom; cursor:pointer}
 #tds{background:url(images/rightlogos/tds.png) bottom no-repeat; height:53px; width:45px; }
 #tds:hover{background-position:bottom; cursor:pointer}
-#ep{background:url(images/rightlogos/ep.png) bottom no-repeat; height:28px; width:59px; }
-#ep:hover{background-position:bottom; cursor:pointer}
+{background:url(images/rightlogos/ep.png) bottom no-repeat; height:28px; width:59px; }
+:hover{background-position:bottom; cursor:pointer}
+#tde{background:url(images/rightlogos/tde.png) bottom no-repeat; height:56px; width:100px; }
+#tde:hover{background-position:bottom; cursor:pointer}
+
 
 /*SS-historik*/
 #historik table {

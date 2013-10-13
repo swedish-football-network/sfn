@@ -7,6 +7,7 @@
 				<li><div id="ifaf" class="" onclick="javascript:location.href='http://www.ifaf.org';"></div></li>
 				<li><div id="tds" class="" onclick="javascript:location.href='http://tdsverige.se';"></div></li>
 				<li><div id="ep" class="" onclick="javascript:location.href='http://www.europlayers.com';"></div></li>
+				<li><div id="tde" class="" onclick="javascript:location.href='http://www.touchdown-europe.net/';"></div></li>
 			</ul>
 			<ul class="sdf-links footer-links float-right">
 				<li><a href="#" title="SSAFF">SSAFF</a></li>
