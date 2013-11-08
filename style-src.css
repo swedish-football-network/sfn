@@ -477,6 +477,7 @@ p label {display: inline; margin-bottom: 0;}
 -moz-border-radius: 5px; margin-bottom:20px;
 border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible; box-shadow:5px 5px 5px #CCC}
 #tabell_div_logo{margin: 10px auto -27px; width:120px; left:20px; position:relative}
+#tabell_div_logo img{border: none}
 
 #resultat td {border: 0}
 #resultat{font-size:8px; width:100%; line-height:14px; border:0}
@@ -492,7 +493,7 @@ border-radius: 5px; border:1px solid #CCC; background:#F9F9F9; overflow:visible;
 #resultat_div_logo{margin: 10px auto -27px; width:120px; left:20px; position:relative}
 
 #resultat_div_page {padding:10px 0 10px; margin-bottom:20px;
-background:#F9F9F9; overflow:visible; border-top:1px solid #999}
+background:#F9F9F9; overflow:visible;}
 #tabell_div_page {padding:0 0 10px;background: url(images/tableheader.png) top no-repeat; margin-bottom:20px;
 background:#fff; overflow:visible; width:500px;}
 

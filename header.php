@@ -86,8 +86,8 @@
 		<?php
 		//
 		$matcher = array();
-        $start_week = 22;
-        $last_week = 50;
+        $start_week = 0;
+        $last_week = 54;
         $real_week = date('W');
         $fb_week = $real_week - $start_week;
         $dayofweek = date('N');
@@ -97,11 +97,11 @@
         
         <div id="games">
 
-        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) ); ?>
+        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => array( 'TDS 1', 'TDS 2' ) ) ); ?>
             <?php while ( $loop->have_posts() ) : $loop->the_post();
 	            $date = strtotime(get_field("datum"));
 	            $game_week = date('W', $date);
-	            if(get_field('serie') == "Superserien" and $game_week == $real_week){
+	            if((get_field('serie') == "TDS 1" or get_field('serie') == "TDS 2") and ($game_week == $real_week or $game_week == $real_week+1 or $game_week == $real_week+2)){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
 					$hemmalag = get_the_title($hemmalag) ;
@@ -137,7 +137,7 @@
 	                            if($match['hemmares'] != ''){
 		                            //Matchen är klar
 	                            }else{
-	                            	echo date('D', $match['datum']); echo " ";
+	                            	echo date('j/n', $match['datum']); echo " ";
 	                            	echo $match['tid'];
 	                            }
                             }else{
@@ -158,9 +158,7 @@
                 </div>
             <?php }; ?>
 
-            <div class="sched" onclick="javascript:location.href='/superserien/';">
-            	Spelschema
-            </div>
+          
         </div>
         <?php }
         echo '<div class="content">'; 

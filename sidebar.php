@@ -4,8 +4,11 @@ $tblActive = true;
 $rsltActive = true;
 if ($tblActive == true){ /* Start Tabell-if */
 
-$tbl = file_get_contents("./tbl.txt");
+$tbl = file_get_contents("./tbl/tds1_tbl.txt");
 echo $tbl;
+$tbl = file_get_contents("./tbl/tds2_tbl.txt");
+echo $tbl;
+
 ?>
 
 <?php
@@ -19,7 +22,7 @@ if($dayofweek == "1" or $dayofweek == "2"){$real_week = $real_week - 1;};
 $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1 ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				$game_week = date("W",strtotime(get_field("datum")));
-				if((get_field("serie") != "Superserien" and $game_week == $real_week) or get_field("serie") == "Womens World Cup"){
+				if(((get_field("serie") != "Superserien" and get_field("serie") != "TDS 1" and get_field("serie") != "TDS 2") and $game_week == $real_week) or get_field("serie") == "Womens World Cup"){
 					$temp = get_field('hemmalag');
 					$id = $temp[0]->ID;
 					$hemmalag = get_the_title($id);

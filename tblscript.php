@@ -1,18 +1,23 @@
-<?php
-define( 'BLOCK_LOAD', true );
-require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-config.php' );
-require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-includes/wp-db.php' );
-$wpdb = new wpdb( 'root', 'kalle123', 'wordpress', 'localhost');
+<?php 
+/* Short and sweet */
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+
 ?>
-<div id="tabell_div_logo"><img src="<?php bloginfo('template_directory'); ?>/images/tbl_ss_logo.png" /></div>	
-	<div id="tabell_div">
+
     
 		<?php
+		if(!isset($_GET["serie"])){
+			
+		}else{
+			$serie = $_GET["serie"];
+		};
+		
 		$lag = array();
 		$links = array();
-		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien', 'orderby' => 'title', 'order' => 'DESC' ) );
+		$loop = new WP_Query( array( 'post_type' => 'teams', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => $serie, 'orderby' => 'title', 'order' => 'DESC' ) );
 		while ( $loop->have_posts() ) : $loop->the_post();
-			if(get_field('serie') == 'Superserien'){
+			if(get_field('serie') == $serie){
 				$lagnamn = get_the_title();
 				array_push($lag, $lagnamn);
 				if(get_field("link") == 1){
@@ -32,7 +37,7 @@ $wpdb = new wpdb( 'root', 'kalle123', 'wordpress', 'localhost');
 			$paga = 0;
 			$games = array();
 	  		
-			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => 'Superserien' ) );
+			$loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => $serie ) );
 			while ( $loop->have_posts() ) : $loop->the_post();
 				if(get_field('matchtid') == "" and strpos(get_the_title(), 'inal') == false){
 				if(get_field("hemmares") != ""){
@@ -143,40 +148,46 @@ function sort_array($a, $b){
  
 
 function print_table( $tabell , $ar) {
-        echo "<table id='tabell' border=0 cellpadding=3>";
-                echo "<tr>";
-                        echo "<td>Lag</td>";
-                        echo "<td>G</td>";
-                        echo "<td>W</td>";
-                        echo "<td>L</td>";
-                        echo "<td>T</td>";
-                        echo "<td>+</td>";
-                        echo "<td>-</td>";
-                        echo "<td>P</td>";
-                        echo "<td>%</td>";
-                echo "</tr>";
+		
+        		$output = "<div id='tabell_div_logo'><img src='http://www.swedishfootballnetwork.se/wp-content/themes/sfn/images/tbl_" . strtolower(trim($serie)) . "_logo.png' /></div><div id='tabell_div'><table id='tabell' border=0 cellpadding=3>";
+                $output .= "<tr>";
+                        $output .= "<td>Lag</td>";
+                        $output .= "<td>G</td>";
+                        $output .= "<td>W</td>";
+                        $output .= "<td>L</td>";
+                        $output .= "<td>T</td>";
+                        $output .= "<td>+</td>";
+                        $output .= "<td>-</td>";
+                        $output .= "<td>P</td>";
+                        $output .= "<td>%</td>";
+                $output .= "</tr>";
         foreach( $tabell as $position ) {
-                echo "<tr>";
+                $output .= "<tr>";
 						$lag = $position['lag'];
 						if ($ar[$lag] != "nope"){
-							echo "<td><a href='" . $ar[$lag] . "'>" . $position['lag'] . "</a></td>";
+							$output .= "<td><a href='" . $ar[$lag] . "'>" . $position['lag'] . "</a></td>";
 						}else{
-                        	echo "<td>" . $position['lag'] . "</td>";
+                        	$output .= "<td>" . $position['lag'] . "</td>";
 						}
-						echo "<td>" . $position['g'] . "</td>";
-                        echo "<td>" . $position['w'] . "</td>";
-                        echo "<td>" . $position['l'] . "</td>";
-                        echo "<td>" . $position['t'] . "</td>";
-                        echo "<td>" . $position['pfor'] . "</td>";
-                        echo "<td>" . $position['paga'] . "</td>";
-                        echo "<td>" . $position['p'] . "</td>";
-                        echo "<td>" . round($position['per']*100) . "</td>";
-                echo "</tr>";
+						$output .= "<td>" . $position['g'] . "</td>";
+                        $output .= "<td>" . $position['w'] . "</td>";
+                        $output .= "<td>" . $position['l'] . "</td>";
+                        $output .= "<td>" . $position['t'] . "</td>";
+                        $output .= "<td>" . $position['pfor'] . "</td>";
+                        $output .= "<td>" . $position['paga'] . "</td>";
+                        $output .= "<td>" . $position['p'] . "</td>";
+                        $output .= "<td>" . round($position['per']*100) . "</td>";
+                $output .= "</tr>";
         }
-        echo "</table></div>";
-		 
+        $output .= "</table></div>";
+        
+        $filename = $serie + "_tbl.txt";
+		$file=fopen($filename,"w");
+		fwrite($file,$output);
+		fclose($file); 
 	}
 	
 	usort($tabell, 'sort_array');
 	print_table( $tabell, $links);
 	?>
+	
