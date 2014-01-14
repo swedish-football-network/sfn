@@ -97,11 +97,11 @@
         
         <div id="games">
 
-        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => array( 'TDS 1', 'TDS 2' ) ) ); ?>
+        <?php $loop = new WP_Query( array( 'post_type' => 'games', 'posts_per_page' => -1, 'meta_key' => 'serie', 'meta_value' => array( 'TDS 1', 'TDS 2' , 'TDS Slutspel') ) ); ?>
             <?php while ( $loop->have_posts() ) : $loop->the_post();
 	            $date = strtotime(get_field("datum"));
 	            $game_week = date('W', $date);
-	            if((get_field('serie') == "TDS 1" or get_field('serie') == "TDS 2") and ($game_week == $real_week or $game_week == $real_week+1 or $game_week == $real_week+2)){
+	            if((get_field('serie') == "TDS 1" or get_field('serie') == "TDS 2" or get_field('serie') == "TDS Slutspel") and ($game_week == $real_week or $game_week == $real_week+1 or $game_week == $real_week+2)){
 					$temp = get_field('hemmalag');
 					$hemmalag = $temp[0]->ID;
 					$hemmalag = get_the_title($hemmalag) ;
